@@ -17,9 +17,14 @@ root
 
 CREATE DATABASE scada;
 
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
-GRANT ALL PRIVILEGES ON scada.* TO 'admin'@'localhost';
+CREATE USER 'admin'@'172.17.0.1' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON scada.* TO 'admin'@'172.17.0.1';
 FLUSH PRIVILEGES;
+
+# For mysql from local machine
+# CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
+# GRANT ALL PRIVILEGES ON scada.* TO 'admin'@'localhost';
+# FLUSH PRIVILEGES;
 
 SHOW DATABASES; # Lists all databases
 USE SCADA; 
