@@ -46,6 +46,16 @@ namespace DatabaseManager
                 +----------------------+
             ";
 
+        private readonly string tagMenu = @"
+                +-------- MENU --------+
+                |1) Digital input      |
+                |2) Digital output     |
+                |3) Analog input       |
+                |4) Analog output      |
+                |X) Exit               |
+                +----------------------+
+            ";
+
         private string token;
 
         public Menu(UserServiceClient userClient, TagServiceClient tagClient)
@@ -139,7 +149,46 @@ namespace DatabaseManager
             StartMenu();
         }
 
-        
+        public void TagMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine(tagMenu);
+                PrettyConsole.Write("Enter choice: ");
+                var input = Console.ReadLine().ToLower();
+
+                switch (input)
+                {
+                    case "1":
+                        //HandleDigitalInput();
+                        break;
+
+                    case "2":
+                        //HandleDigitalOutput();
+                        break;
+
+                    case "3":
+                        //HandleAnalogInput();
+                        break;
+
+                    case "4":
+                        //HandleAnalogOutput();
+                        break;
+
+                    case "x":
+                        PrettyConsole.WriteLine("Exited.");
+                        return;
+
+                    default:
+                        PrettyConsole.WriteLine("Error: Invalid choice.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        break;
+                }
+            }
+        }
+
+
 
 
     }
