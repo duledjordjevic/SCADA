@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,17 +10,19 @@ namespace Core.Service
 {
     public class TagService : IBaseService, ITagService
     {
+        static MessageArrivedDelegate notifier;
+
         public void AddTag()
         {
-            throw new NotImplementedException();
+            InitNotifier();
+            TagProccessing.LoadTags();
+            foreach (var tag in TagProccessing.analogInputs)
+            {
+                SendMessage(tag.ToString());
+            }
         }
 
         public void GetOutput(double value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void InitNotifier()
         {
             throw new NotImplementedException();
         }
@@ -29,10 +32,6 @@ namespace Core.Service
             throw new NotImplementedException();
         }
 
-        public void SendMessage(string message)
-        {
-            throw new NotImplementedException();
-        }
 
         public void SetOutput(double value)
         {
@@ -42,6 +41,15 @@ namespace Core.Service
         public void ToggleScan()
         {
             throw new NotImplementedException();
+        }
+
+        public void InitNotifier()
+        {
+            notifier = OperationContext.Current.GetCallbackChannel<ICallBack>().MessageArrived;
+        }
+        public void SendMessage(string message)
+        {
+            notifier?.Invoke(message);
         }
     }
 }

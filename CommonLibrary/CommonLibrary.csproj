@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthProvider.cs" />
+    <Compile Include="Model\Alarm.cs" />
+    <Compile Include="Model\AnalogInput.cs" />
+    <Compile Include="Model\AnalogOutput.cs" />
+    <Compile Include="Model\DigitalInput.cs" />
+    <Compile Include="Model\DigitalOutput.cs" />
+    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\Enum\AlarmPriorityType.cs" />
+    <Compile Include="Model\InputTag.cs" />
+    <Compile Include="Model\OutputTag.cs" />
+    <Compile Include="Model\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
