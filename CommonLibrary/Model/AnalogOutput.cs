@@ -26,6 +26,9 @@ namespace CommonLibrary.Model
         [DataMember]
         public string Unit {  get; set; }
 
-
+        public AnalogOutput()
+        {
+            
+        }
     }
 }

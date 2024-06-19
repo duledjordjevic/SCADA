@@ -28,6 +28,7 @@ namespace Core.Repository
                     HighLimit = double.Parse(tag.Attribute("highLimit")?.Value ?? "0"),
                     Unit = tag.Attribute("unit")?.Value,
                     Description = tag.Element("description")?.Value,
+                    Alarms = null, 
                 };
 
                 foreach (XElement alarm in tag.Descendants("Alarms"))

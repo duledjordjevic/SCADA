@@ -17,5 +17,10 @@ namespace CommonLibrary.Model
         {
             Value = value;
         }
+
+        protected OutputTag()
+        {
+            
+        }
     }
 }

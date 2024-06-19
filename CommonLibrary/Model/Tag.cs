@@ -25,5 +25,9 @@ namespace CommonLibrary.Model
             Description = description;
             Address = address;
         }
+
+        protected Tag()
+        {
+        }
     }
 }

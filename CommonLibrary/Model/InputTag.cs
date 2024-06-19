@@ -23,6 +23,10 @@ namespace CommonLibrary.Model
         public bool IsSyncTurned { get; set; }
         //public Driver Driver { get; set; }
 
+        protected InputTag()
+        {
+            
+        }
 
     }
 }

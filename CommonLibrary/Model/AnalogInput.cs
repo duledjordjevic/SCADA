@@ -35,6 +35,11 @@ namespace CommonLibrary.Model
             Alarms = alarms;
         }
 
+        public AnalogInput()
+        {
+            
+        }
+
         public void AddAlarm(Alarm alarm)
         {
             Alarms.Add(alarm);

@@ -13,5 +13,10 @@ namespace CommonLibrary.Model
         public DigitalInput(string name, string description, string address, int syncTime, bool isSyncOn) : base(name, description, address, syncTime, isSyncOn)
         {
         }
+
+        public DigitalInput()
+        {
+            
+        }
     }
 }
