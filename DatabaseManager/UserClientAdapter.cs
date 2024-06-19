@@ -18,16 +18,16 @@ namespace DatabaseManager
 
         public string Login()
         {
-            string username = ConsoleReader.ReadUsername();
-            string password = ConsoleReader.ReadPassword();
+            string username = UserConsoleReader.ReadUsername();
+            string password = UserConsoleReader.ReadPassword();
             PrettyConsole.WriteLine("Logging in...");
             return UserClient.Login(username, password);
         }
 
         public void Register()
         {
-            string username = ConsoleReader.ReadUsername();
-            string password = ConsoleReader.ReadPassword();
+            string username = UserConsoleReader.ReadUsername();
+            string password = UserConsoleReader.ReadPassword();
             PrettyConsole.WriteLine("Registering...");
             UserClient.Register(username, password);
         }

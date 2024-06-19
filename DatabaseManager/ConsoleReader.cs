@@ -8,60 +8,84 @@ namespace DatabaseManager
 {
     public class ConsoleReader
     {
-        public static string ReadPassword()
+        public static string ReadString(string info, string error)
         {
-            string password;
-
+            string input;
             do
             {
-                PrettyConsole.Write("Enter password: ");
-                password = string.Empty;
-                ConsoleKeyInfo key;
+                PrettyConsole.Write($"{info}");
+                input = Console.ReadLine();
 
-                do
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    key = Console.ReadKey(true);
-
-                    if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
-                    {
-                        password += key.KeyChar;
-                        Console.Write("*");
-                    }
-                    else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-                    {
-                        password = password.Substring(0, (password.Length - 1));
-                        Console.Write("\b \b");
-                    }
-                } while (key.Key != ConsoleKey.Enter);
-
-                Console.WriteLine();
-
-                if (string.IsNullOrWhiteSpace(password))
-                {
-                    PrettyConsole.WriteLine("Error: Password cannot be empty.");
+                    PrettyConsole.WriteLine($"Error: {error}");
                 }
 
-            } while (string.IsNullOrWhiteSpace(password));
+            } while (string.IsNullOrWhiteSpace(input));
 
-            return password;
+            return input;
         }
 
-        public static string ReadUsername()
+        public bool ReadBool(string info, string error)
         {
-            string username;
-            do
+            while (true)
             {
-                PrettyConsole.Write("Enter username: ");
-                username = Console.ReadLine();
+                PrettyConsole.Write($"{info} (y/n): ");
+                var input = Console.ReadLine().ToLower();
 
-                if (string.IsNullOrWhiteSpace(username))
+                if (input == "y")
                 {
-                    PrettyConsole.WriteLine("Error: Username cannot be empty.");
+                    return true;
                 }
-
-            } while (string.IsNullOrWhiteSpace(username));
-
-            return username;
+                else if (input == "n")
+                {
+                    return false;
+                }
+                else
+                {
+                    PrettyConsole.WriteLine("Error: Invalid input.");
+                }
+            }
         }
+
+        public int ReadPositiveInteger(string info, string error)
+        {
+            while (true)
+            {
+                PrettyConsole.Write($"{info}");
+                string input = Console.ReadLine();
+                int number;
+
+                if (int.TryParse(input, out number) && number > 0)
+                {
+                    return number;
+                }
+                else
+                {
+                    PrettyConsole.WriteLine($"Error: {error}");
+                }
+            }
+        }
+
+        public double ReadDouble(string info, string error)
+        {
+            while (true)
+            {
+                PrettyConsole.Write($"{info}");
+                string input = Console.ReadLine();
+                double number;
+
+                // Try to parse the input as a double
+                if (double.TryParse(input, out number))
+                {
+                    return number;
+                }
+                else
+                {
+                    PrettyConsole.WriteLine($"Error: {error}");
+                }
+            }
+        }
+
     }
 }
