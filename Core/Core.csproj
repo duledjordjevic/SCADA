@@ -116,18 +116,28 @@
       <DependentUpon>202406182126049_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\Alarm.cs" />
+    <Compile Include="Model\AnalogInput.cs" />
+    <Compile Include="Model\AnalogOutput.cs" />
+    <Compile Include="Model\DigitalInput.cs" />
+    <Compile Include="Model\DigitalOutput.cs" />
+    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\Enum\AlarmPriorityType.cs" />
     <Compile Include="Model\InputTag.cs" />
     <Compile Include="Model\OutputTag.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
+    <Compile Include="Repository\TagReader.cs" />
+    <Compile Include="Repository\TagWriter.cs" />
     <Compile Include="Service\Interface\IBaseService.cs" />
     <Compile Include="Service\Interface\ICallBack.cs" />
     <Compile Include="Service\Interface\IUserService.cs" />
     <Compile Include="Service\Interface\ITagService.cs" />
     <Compile Include="Service\TagService.cs" />
     <Compile Include="Service\UserService.cs" />
+    <Compile Include="TagProccessing.cs" />
     <Compile Include="Util\Delegate.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -54,7 +54,7 @@ namespace Core.Repository
                 new XAttribute("address", input.Address),
                 new XAttribute("syncTime", input.SyncTime),
                 new XAttribute("isSyncTurned", input.IsSyncTurned.ToString().ToLower()),
-                new XAttribute("driver", input.Driver),
+                //new XAttribute("driver", input.Driver),
                 new XElement("description", input.Description)
             )).ToList();
         }
