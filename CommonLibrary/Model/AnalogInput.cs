@@ -23,10 +23,21 @@ namespace CommonLibrary.Model
         public List<Alarm> Alarms { get; set; }
 
 
-
         public AnalogInput() 
         {
             Alarms = new List<Alarm>();
+        }
+        public AnalogInput(string name, string description,string address, bool isSyncTurned, int syncTime, double lowLimit, double highLimit, string unit, List<Alarm> alarms)
+        {
+            Name = name;
+            Description = description;
+            Address = address;
+            LowLimit = lowLimit;
+            HighLimit = highLimit;
+            Unit = unit;
+            Alarms = alarms;
+            SyncTime = syncTime;
+            IsSyncTurned = isSyncTurned;
         }
 
         public void AddAlarm(Alarm alarm)
@@ -38,5 +49,6 @@ namespace CommonLibrary.Model
         {
             return $"Name: {Name}, Unit: {Unit}";
         }
+
     }
 }
