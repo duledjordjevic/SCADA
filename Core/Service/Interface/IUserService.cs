@@ -12,9 +12,12 @@ namespace Core.Service
     public interface IUserService
     {
         [OperationContract]
-        void Login(string username, string password);
-
+        bool Register(string username, string password);
+        
         [OperationContract]
-        void Register(string username, string password);
+        string Login(string username, string password);
+        
+        [OperationContract]
+        bool Logout(string token);
     }
 }

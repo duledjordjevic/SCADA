@@ -7,30 +7,65 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Core.Model;
+using CommonLibrary;
 
 namespace Core.Service
 {
     public class UserService : IBaseService, IUserService
     {
+        public static Dictionary<string, User> authenticatedUsers = new Dictionary<string, User>();
+
         static MessageArrivedDelegate notifier;
 
-        public void Login(string username, string password)
+        public string Login(string username, string password)
         {
-
-            SendMessage($"{username} - {password}");
+            InitNotifier();
+            var token = "";
+            using (var db = new DatabaseContext())
+            {
+                foreach (var user in db.Users)
+                {
+                    if (username == user.Username &&
+                   AuthProvider.Validate(password, user.Password))
+                    {
+                        token = AuthProvider.GenerateToken(username);
+                        authenticatedUsers.Add(token, user);
+                        SendMessage($"Login succesfull!");
+                        return token;
+                    }
+                }
+            }
+            SendMessage($"Login failed!");
+            return token;
         }
 
-        public void Register(string username, string password)
+        public bool Logout(string token)
         {
-            InitNotifier();   
+            authenticatedUsers.Remove(token);
+            SendMessage($"Logged out.");
+            return true;
+        }
 
-            using(var db = new DatabaseContext())
+        public bool Register(string username, string password)
+        {
+            InitNotifier();
+
+            using (var db = new DatabaseContext())
             {
-                db.Users.Add(new User(username, password));
-                db.SaveChanges();
+                try
+                {
+                    db.Users.Add(new User(username, AuthProvider.Encrypt(password)));
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    SendMessage($"Registration failed!");
+                    return false;
+                }
             }
 
-            SendMessage($"Registration successful: {username} - {password}");
+            SendMessage($"Registration successful: {username}");
+            return true;
         }
 
         public void InitNotifier()
