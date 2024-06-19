@@ -111,7 +111,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IService1.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.Designer.cs">
       <DependentUpon>202406182126049_InitialCreate.cs</DependentUpon>
@@ -120,7 +119,11 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
-    <Compile Include="Service1.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\ICallBack.cs" />
+    <Compile Include="Service\IUserService.cs" />
+    <Compile Include="Service\UserService.cs" />
+    <Compile Include="Util\Delegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -130,6 +133,12 @@
     <EmbeddedResource Include="Migrations\202406182126049_InitialCreate.resx">
       <DependentUpon>202406182126049_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">
+      <Project>{18632785-d126-466f-8644-6a1023a72aad}</Project>
+      <Name>CommonLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
