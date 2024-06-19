@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tags>
+	<tag type="DI" name="Unit1" desc="Some desc1" driver="RTU" IO="0001" time="4" scan="false"/>
+</tags>

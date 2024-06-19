@@ -10,14 +10,16 @@ using Core.Model;
 
 namespace Core.Service
 {
-    public class UserService : BaseService, IUserService
+    public class UserService : IBaseService, IUserService
     {
         static MessageArrivedDelegate notifier;
+
+        
 
         public void Login(string username, string password)
         {
 
-            SendMessage(notifier, $"{username} - {password}");
+            SendMessage($"{username} - {password}");
         }
 
         public void Register(string username, string password)
@@ -30,12 +32,17 @@ namespace Core.Service
                 db.SaveChanges();
             }
 
-            SendMessage(notifier, $"Registration successful: {username} - {password}");
+            SendMessage($"Registration successful: {username} - {password}");
         }
 
-        protected override void InitNotifier()
+        public void InitNotifier()
         {
             notifier = OperationContext.Current.GetCallbackChannel<ICallBack>().MessageArrived;
+        }
+
+        public void SendMessage(string message)
+        {
+            notifier?.Invoke(message);
         }
     }
 }
