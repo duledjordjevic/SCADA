@@ -35,11 +35,6 @@ namespace DatabaseManager
             var menu = new Menu(userClient, tagClient);
             menu.StartMenu();
 
-            //userClient.Register("rade", "sifra");
-            //userClient.Login("rade", "laznjak");
-            //var token = userClient.Login("rade", "sifra");
-            //Console.WriteLine(token);
-            //userClient.Logout(token);
             Console.ReadKey();
         }
     }

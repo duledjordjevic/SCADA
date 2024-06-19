@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="f91e2c93-aa8c-4987-aa48-3309f210d109" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="bb7b8d2f-d4cb-4cdf-947a-2fe835aeb76d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,9 +22,9 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="29723221-969c-47bb-9a8f-2b01f81e352f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="4f68edf9-17a8-4355-8e70-cb272205e1fc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="20701ed3-913c-49f9-8140-49a29d4a0414" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="474e01d2-85e0-42d7-88e9-63d11021859d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3fd9c958-095c-4e6c-8d14-1c9dcbb6deb1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="efe9cfaf-4b00-4f58-96d3-9b8015d4af9f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

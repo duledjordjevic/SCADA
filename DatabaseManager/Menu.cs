@@ -48,10 +48,10 @@ namespace DatabaseManager
 
         private string token;
 
-        public Menu(UserServiceClient userClient)
+        public Menu(UserServiceClient userClient, TagServiceClient tagClient)
         {
             userClientAdapter = new UserClientAdapter(userClient);
-            //tagClientAdapter = new TagClientAdapter();
+            tagClientAdapter = new TagClientAdapter(tagClient);
         }
 
         public void StartMenu()
