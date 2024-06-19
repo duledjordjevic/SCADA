@@ -16,7 +16,7 @@ namespace DatabaseManager
             { "address", "address" },
             { "syncTime", "sync time" },
             { "value", "value" },
-            { "isSyncOn", "sync on" },
+            { "isSyncOn", "Is sync on" },
             { "driver", "driver" },
             { "lowLimit", "lower limit" },
             { "highLimit", "upper limit" },

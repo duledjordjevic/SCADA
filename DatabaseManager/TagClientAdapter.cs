@@ -18,7 +18,6 @@ namespace DatabaseManager
 
         public void AddTag()
         {
-            var tag = TagConsoleReader.ReadDI();
             TagClient.AddTag();
         }
     }

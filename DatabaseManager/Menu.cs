@@ -156,7 +156,8 @@ namespace DatabaseManager
 
         public Tag TagMenu()
         {
-            while (true)
+            Tag tag = null;
+            while (tag == null)
             {
                 Console.WriteLine(tagMenu);
                 PrettyConsole.Write("Enter choice: ");
@@ -165,20 +166,24 @@ namespace DatabaseManager
                 switch (input)
                 {
                     case "1":
-                        return TagConsoleReader.ReadDI();
+                        tag = TagConsoleReader.ReadDI();
+                        break;
 
                     case "2":
-                        return TagConsoleReader.ReadDO();
+                        tag = TagConsoleReader.ReadDO();
+                        break;
 
                     case "3":
-                        return TagConsoleReader.ReadAI();
+                        tag = TagConsoleReader.ReadAI();
+                        break;
 
                     case "4":
-                        return TagConsoleReader.ReadAO();
+                        tag = TagConsoleReader.ReadAO();
+                        break;
 
                     case "x":
                         PrettyConsole.WriteLine("Exited.");
-                        return null;
+                        break;
 
                     default:
                         PrettyConsole.WriteLine("Error: Invalid choice.");
@@ -187,6 +192,7 @@ namespace DatabaseManager
                         break;
                 }
             }
+            return tag;
         }
 
 
