@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RealTimeUnit
+namespace CommonLibrary
 {
-    internal class Program
+    public class User
     {
-        static void Main(string[] args)
-        {
-        }
+
     }
 }

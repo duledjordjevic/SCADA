@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RealTimeUnit")]
+[assembly: AssemblyTitle("RTU")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RealTimeUnit")]
+[assembly: AssemblyProduct("RTU")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1c374823-bd3e-4ec2-8270-845fc353758a")]
+[assembly: Guid("8d9d0694-0fb9-4573-95b9-62da06bb876d")]
 
 // Version information for an assembly consists of the following four values:
 //
