@@ -16,6 +16,9 @@ namespace DatabaseManager
             TagClient = tagClient;
         }
 
-
+        public void AddTag()
+        {
+            TagClient.AddTag();
+        }
     }
 }

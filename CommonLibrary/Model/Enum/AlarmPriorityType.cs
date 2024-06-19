@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Model
+namespace CommonLibrary.Model.Enum
 {
-    public class DigitalOutput : OutputTag
-    {
+    public enum AlarmPriorityType
+    { 
+        LOW, HIGH
     }
 }

@@ -1,5 +1,5 @@
-﻿using Core.Model.Enum;
-using Core.Model;
+﻿using CommonLibrary.Model.Enum;
+using CommonLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

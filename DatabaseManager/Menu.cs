@@ -112,7 +112,8 @@ namespace DatabaseManager
                         break;
 
                     case "5":
-                        //AddTag();
+                        tagClientAdapter.AddTag();
+                        Thread.Sleep(5000);
                         break;
 
                     case "6":

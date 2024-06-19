@@ -1,5 +1,5 @@
-﻿using Core.Model;
-using Core.Model.Enum;
+﻿using CommonLibrary.Model;
+using CommonLibrary.Model.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +14,11 @@ namespace Core
     
     public class TagProccessing
     {
-        static readonly string TAGS_CONFIG_PATH = @"";
+        static readonly string TAGS_CONFIG_PATH = @"E:\Faks\6.semestar\Softver nadzorno-upravljackih sistema\Projekat\SCADA\Core\scadaConfig.xml";
 
         static readonly object tagsConfigLock = new object();
 
-        static List<AnalogInput> analogInputs = new List<AnalogInput>();
+        public static List<AnalogInput> analogInputs = new List<AnalogInput>();
         static List<AnalogOutput> analogOutputs = new List<AnalogOutput>();
         static List<DigitalInput> digitalInputs = new List<DigitalInput>();
         static List<DigitalOutput> digitalOutputs = new List<DigitalOutput>();
@@ -55,6 +55,8 @@ namespace Core
                 }
             }
         }
+
+
 
 
     }
