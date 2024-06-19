@@ -8,24 +8,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DatabaseManager.ServiceReference {
+namespace DatabaseManager.UserServiceReference {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IUserService", CallbackContract=typeof(DatabaseManager.ServiceReference.IUserServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserServiceReference.IUserService", CallbackContract=typeof(DatabaseManager.UserServiceReference.IUserServiceCallback))]
     public interface IUserService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
-        void Login(string username, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
-        System.Threading.Tasks.Task LoginAsync(string username, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Register", ReplyAction="http://tempuri.org/IUserService/RegisterResponse")]
+        bool Register(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Register", ReplyAction="http://tempuri.org/IUserService/RegisterResponse")]
-        void Register(string username, string password);
+        System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Register", ReplyAction="http://tempuri.org/IUserService/RegisterResponse")]
-        System.Threading.Tasks.Task RegisterAsync(string username, string password);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
+        string Login(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Login", ReplyAction="http://tempuri.org/IUserService/LoginResponse")]
+        System.Threading.Tasks.Task<string> LoginAsync(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Logout", ReplyAction="http://tempuri.org/IUserService/LogoutResponse")]
+        bool Logout(string token);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Logout", ReplyAction="http://tempuri.org/IUserService/LogoutResponse")]
+        System.Threading.Tasks.Task<bool> LogoutAsync(string token);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -36,12 +42,12 @@ namespace DatabaseManager.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IUserServiceChannel : DatabaseManager.ServiceReference.IUserService, System.ServiceModel.IClientChannel {
+    public interface IUserServiceChannel : DatabaseManager.UserServiceReference.IUserService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserServiceClient : System.ServiceModel.DuplexClientBase<DatabaseManager.ServiceReference.IUserService>, DatabaseManager.ServiceReference.IUserService {
+    public partial class UserServiceClient : System.ServiceModel.DuplexClientBase<DatabaseManager.UserServiceReference.IUserService>, DatabaseManager.UserServiceReference.IUserService {
         
         public UserServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -63,20 +69,28 @@ namespace DatabaseManager.ServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void Login(string username, string password) {
-            base.Channel.Login(username, password);
+        public bool Register(string username, string password) {
+            return base.Channel.Register(username, password);
         }
         
-        public System.Threading.Tasks.Task LoginAsync(string username, string password) {
+        public System.Threading.Tasks.Task<bool> RegisterAsync(string username, string password) {
+            return base.Channel.RegisterAsync(username, password);
+        }
+        
+        public string Login(string username, string password) {
+            return base.Channel.Login(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<string> LoginAsync(string username, string password) {
             return base.Channel.LoginAsync(username, password);
         }
         
-        public void Register(string username, string password) {
-            base.Channel.Register(username, password);
+        public bool Logout(string token) {
+            return base.Channel.Logout(token);
         }
         
-        public System.Threading.Tasks.Task RegisterAsync(string username, string password) {
-            return base.Channel.RegisterAsync(username, password);
+        public System.Threading.Tasks.Task<bool> LogoutAsync(string token) {
+            return base.Channel.LogoutAsync(token);
         }
     }
 }
