@@ -50,8 +50,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ConsoleReader.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="PrettyConsole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagClientAdapter.cs" />
+    <Compile Include="UserClientAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -87,5 +92,6 @@
       <Name>CommonLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
