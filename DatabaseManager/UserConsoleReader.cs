@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DatabaseManager
 {
-    public class ConsoleReader
+    public class UserConsoleReader
     {
         public static string ReadPassword()
         {

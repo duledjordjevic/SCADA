@@ -8,17 +8,27 @@ namespace DatabaseManager
 {
     public class ConsoleReader
     {
+        private static string InfoString(string info)
+        {
+            return $"Enter {info}: ";
+        }
+
+        private static string ErrorString(string error)
+        {
+            return $"Error: {error}.";
+        }
+
         public static string ReadString(string info, string error)
         {
             string input;
             do
             {
-                PrettyConsole.Write($"{info}");
+                PrettyConsole.Write(InfoString(info));
                 input = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(input))
                 {
-                    PrettyConsole.WriteLine($"Error: {error}");
+                    PrettyConsole.WriteLine(ErrorString(error));
                 }
 
             } while (string.IsNullOrWhiteSpace(input));
@@ -26,7 +36,7 @@ namespace DatabaseManager
             return input;
         }
 
-        public bool ReadBool(string info, string error)
+        public static bool ReadBool(string info)
         {
             while (true)
             {
@@ -43,16 +53,16 @@ namespace DatabaseManager
                 }
                 else
                 {
-                    PrettyConsole.WriteLine("Error: Invalid input.");
+                    PrettyConsole.WriteLine(ErrorString("Invalid input"));
                 }
             }
         }
 
-        public int ReadPositiveInteger(string info, string error)
+        public static int ReadPositiveInteger(string info, string error)
         {
             while (true)
             {
-                PrettyConsole.Write($"{info}");
+                PrettyConsole.Write(InfoString(info));
                 string input = Console.ReadLine();
                 int number;
 
@@ -62,16 +72,16 @@ namespace DatabaseManager
                 }
                 else
                 {
-                    PrettyConsole.WriteLine($"Error: {error}");
+                    PrettyConsole.WriteLine(ErrorString(error));
                 }
             }
         }
 
-        public double ReadDouble(string info, string error)
+        public static double ReadDouble(string info, string error)
         {
             while (true)
             {
-                PrettyConsole.Write($"{info}");
+                PrettyConsole.Write(InfoString(info));
                 string input = Console.ReadLine();
                 double number;
 
@@ -82,7 +92,7 @@ namespace DatabaseManager
                 }
                 else
                 {
-                    PrettyConsole.WriteLine($"Error: {error}");
+                    PrettyConsole.WriteLine(ErrorString(error));
                 }
             }
         }

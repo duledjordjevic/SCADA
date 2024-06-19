@@ -8,6 +8,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CommonLibrary.Model;
 
 namespace DatabaseManager
 {
@@ -122,6 +123,10 @@ namespace DatabaseManager
                         break;
 
                     case "5":
+                        var tag = TagMenu();
+
+                        if (tag == null) { break; }
+
                         tagClientAdapter.AddTag();
                         Thread.Sleep(5000);
                         break;
@@ -149,7 +154,7 @@ namespace DatabaseManager
             StartMenu();
         }
 
-        public void TagMenu()
+        public Tag TagMenu()
         {
             while (true)
             {
@@ -160,24 +165,20 @@ namespace DatabaseManager
                 switch (input)
                 {
                     case "1":
-                        //HandleDigitalInput();
-                        break;
+                        return TagConsoleReader.ReadDI();
 
                     case "2":
-                        //HandleDigitalOutput();
-                        break;
+                        return TagConsoleReader.ReadDO();
 
                     case "3":
-                        //HandleAnalogInput();
-                        break;
+                        return TagConsoleReader.ReadAI();
 
                     case "4":
-                        //HandleAnalogOutput();
-                        break;
+                        return TagConsoleReader.ReadAO();
 
                     case "x":
                         PrettyConsole.WriteLine("Exited.");
-                        return;
+                        return null;
 
                     default:
                         PrettyConsole.WriteLine("Error: Invalid choice.");
