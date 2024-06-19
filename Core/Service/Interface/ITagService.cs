@@ -14,16 +14,15 @@ namespace Core.Service
         void SetOutput(double value);
 
         [OperationContract]
- 
         void GetOutput(double value);
+
         [OperationContract]
-        
         void ToggleScan();
+
         [OperationContract]
-        
         void AddTag();
+
         [OperationContract]
-        
         void RemoveTag(double value);
     }
 }

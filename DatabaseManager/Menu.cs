@@ -117,7 +117,8 @@ namespace DatabaseManager
                         break;
 
                     case "6":
-                        //RemoveTag();
+                        tagClientAdapter.RemoveTag();
+                        Thread.Sleep(5000);
                         break;
 
                     case "x":

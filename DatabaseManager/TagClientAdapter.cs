@@ -20,5 +20,10 @@ namespace DatabaseManager
         {
             TagClient.AddTag();
         }
+
+        public void RemoveTag()
+        {
+            TagClient.RemoveTag(12.454);
+        }
     }
 }
