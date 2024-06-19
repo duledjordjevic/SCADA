@@ -17,16 +17,22 @@ namespace CommonLibrary.Model
         public double HighLimit { get; set; }
 
         [DataMember]
-        public string Unit {  get; set; }
+        public string Unit { get; set; }
 
         [DataMember]
         public List<Alarm> Alarms { get; set; }
 
+        //public AnalogInput()
+        //{
+        //    Alarms = new List<Alarm>();
+        //}
 
-
-        public AnalogInput() 
+        public AnalogInput(string name, string description, string address, int syncTime, bool isSyncOn, double low, double high, string unit, List<Alarm> alarms) : base(name, description, address, syncTime, isSyncOn)
         {
-            Alarms = new List<Alarm>();
+            LowLimit = low;
+            HighLimit = high;
+            Unit = unit;
+            Alarms = alarms;
         }
 
         public void AddAlarm(Alarm alarm)

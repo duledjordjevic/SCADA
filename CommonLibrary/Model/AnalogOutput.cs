@@ -10,6 +10,13 @@ namespace CommonLibrary.Model
     [DataContract]
     public class AnalogOutput : OutputTag
     {
+        public AnalogOutput(string name, string description, string address, double value, double low, double high, string unit) : base(name, description, address, value)
+        {
+            LowLimit = low;
+            HighLimit = high;
+            Unit = unit;
+        }
+
         [DataMember]
         public double LowLimit { get; set; }
 
@@ -18,5 +25,7 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public string Unit {  get; set; }
+
+
     }
 }
