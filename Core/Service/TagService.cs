@@ -1,4 +1,6 @@
-﻿using Core.Util;
+﻿using CommonLibrary.Model;
+using CommonLibrary.Model.Enum;
+using Core.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,27 @@ namespace Core.Service
         {
             InitNotifier();
             TagProccessing.LoadTags();
+
+            List<Alarm> alarms = new List<Alarm>
+            {
+                new Alarm(AlarmPriorityType.LOW, 1, 4.0),
+                new Alarm(AlarmPriorityType.HIGH, 2, 35.0)
+            };
+
+            AnalogInput analogInput = new AnalogInput(
+                name: "TemperatureSensor",
+                description: "Measures temperature",
+                address: "1",
+                isSyncTurned: true,
+                syncTime: 3,
+                lowLimit: -10.0,
+                highLimit: 50.0,
+                unit: "Celsius",
+                alarms: alarms
+            );
+
+
+            TagProccessing.AddTag(analogInput);
             foreach (var tag in TagProccessing.analogInputs)
             {
                 SendMessage(tag.ToString());
@@ -29,7 +52,20 @@ namespace Core.Service
 
         public void RemoveTag(double value)
         {
-            throw new NotImplementedException();
+            InitNotifier();
+            TagProccessing.LoadTags();
+
+            foreach (var tag in TagProccessing.analogInputs)
+            {
+                SendMessage(tag.ToString());
+            }
+
+            TagProccessing.RemoveTag("TemperatureSensor");
+
+            foreach (var tag in TagProccessing.analogInputs)
+            {
+                SendMessage(tag.ToString());
+            }
         }
 
 
