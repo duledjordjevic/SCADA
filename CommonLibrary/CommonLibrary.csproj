@@ -50,6 +50,7 @@
     <Compile Include="Model\DigitalOutput.cs" />
     <Compile Include="Model\Driver.cs" />
     <Compile Include="Model\Enum\AlarmPriorityType.cs" />
+    <Compile Include="Model\Enum\TagType.cs" />
     <Compile Include="Model\InputTag.cs" />
     <Compile Include="Model\OutputTag.cs" />
     <Compile Include="Model\Tag.cs" />

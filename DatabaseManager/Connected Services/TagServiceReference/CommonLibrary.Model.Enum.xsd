@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="TagType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DI" />
+      <xs:enumeration value="DO" />
+      <xs:enumeration value="AI" />
+      <xs:enumeration value="AO" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TagType" nillable="true" type="tns:TagType" />
+</xs:schema>

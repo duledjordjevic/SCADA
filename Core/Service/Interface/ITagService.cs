@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using CommonLibrary.Model;
+using CommonLibrary.Model.Enum;
 
 namespace Core.Service
 {
@@ -20,9 +22,13 @@ namespace Core.Service
         void ToggleScan();
 
         [OperationContract]
-        void AddTag();
+        void AddTag(Tag tag);
 
         [OperationContract]
-        void RemoveTag(double value);
+        void RemoveTag(string name);
+
+        [OperationContract]
+        List<string> ListTags(TagType type);
+
     }
 }

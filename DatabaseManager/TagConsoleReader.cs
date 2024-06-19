@@ -48,7 +48,7 @@ namespace DatabaseManager
             var high = ConsoleReader.ReadDouble(infos["highLimit"], errors["highLimit"]);
             var unit = ConsoleReader.ReadString(infos["unit"], errors["unit"]);
 
-            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, null);
+            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, new List<Alarm>());
         }
 
         public static AnalogOutput ReadAO()

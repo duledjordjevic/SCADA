@@ -57,6 +57,13 @@ namespace DatabaseManager
                 +----------------------+
             ";
 
+        private readonly string driverMenu = @"
+                +------- DRIVER -------+
+                |1) Real Time Unit     |
+                |2) Simulation Driver  |
+                +----------------------+
+            ";
+
         private string token;
 
         public Menu(UserServiceClient userClient, TagServiceClient tagClient)
@@ -67,7 +74,8 @@ namespace DatabaseManager
 
         public void StartMenu()
         {
-            while (true) 
+            token = "";
+            while (token.Equals("")) 
             {
                 Console.WriteLine(title + startMenu);
                 PrettyConsole.Write("Enter choice: ");
@@ -88,8 +96,6 @@ namespace DatabaseManager
                         Console.Clear();
                         break;
                 }
-
-                if (!token.Equals("")) { break; }
             }
 
             Console.Clear();
@@ -125,14 +131,15 @@ namespace DatabaseManager
                     case "5":
                         var tag = TagMenu();
 
+                        PrettyConsole.WriteLine($"{tag}");
                         if (tag == null) { break; }
 
-                        tagClientAdapter.AddTag();
+                        tagClientAdapter.AddTag(tag);
                         Thread.Sleep(5000);
                         break;
 
                     case "6":
-                        tagClientAdapter.RemoveTag();
+                        tagClientAdapter.RemoveTag("Vrata");
                         Thread.Sleep(5000);
                         break;
 

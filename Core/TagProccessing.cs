@@ -14,14 +14,14 @@ namespace Core
     
     public class TagProccessing
     {
-        static readonly string TAGS_CONFIG_PATH = @"E:\Faks\6.semestar\Softver nadzorno-upravljackih sistema\Projekat\SCADA\Core\scadaConfig.xml";
+        static readonly string TAGS_CONFIG_PATH = @"C:\Users\Administrator\Desktop\SCADA\Core\scadaConfig.xml";
 
         static readonly object tagsConfigLock = new object();
 
         public static List<AnalogInput> analogInputs = new List<AnalogInput>();
-        static List<AnalogOutput> analogOutputs = new List<AnalogOutput>();
-        static List<DigitalInput> digitalInputs = new List<DigitalInput>();
-        static List<DigitalOutput> digitalOutputs = new List<DigitalOutput>();
+        public static List<AnalogOutput> analogOutputs = new List<AnalogOutput>();
+        public static List<DigitalInput> digitalInputs = new List<DigitalInput>();
+        public static List<DigitalOutput> digitalOutputs = new List<DigitalOutput>();
 
         
 
@@ -114,22 +114,22 @@ namespace Core
            digitalOutputs.Any(tag => tag.Name == tagName);
         }
 
-        public static List<string> GetAllTagNames(string tagType)
+        public static List<string> GetAllTagNames(TagType type)
         {
             List<string> tagNames;
 
-            switch (tagType)
+            switch (type)
             {
-                case "AnalogInput":
+                case TagType.AI:
                     tagNames = analogInputs.Select(tag => tag.Name).ToList();
                     break;
-                case "AnalogOutput":
+                case TagType.AO:
                     tagNames = analogOutputs.Select(tag => tag.Name).ToList();
                     break;
-                case "DigitalInput":
+                case TagType.DI:
                     tagNames = digitalInputs.Select(tag => tag.Name).ToList();
                     break;
-                case "DigitalOutput":
+                case TagType.DO:
                     tagNames = digitalOutputs.Select(tag => tag.Name).ToList();
                     break;
                 default:

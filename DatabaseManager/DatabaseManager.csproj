@@ -67,6 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\TagServiceReference\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TagServiceReference\CommonLibrary.Model.Enum.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TagServiceReference\CommonLibrary.Model.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\TagServiceReference\service.wsdl" />
     <None Include="Connected Services\TagServiceReference\service.xsd">
       <SubType>Designer</SubType>
