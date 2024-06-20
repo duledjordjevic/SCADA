@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthProvider.cs" />
+    <Compile Include="Console\ConsoleReader.cs" />
+    <Compile Include="Console\PrettyConsole.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\AnalogInput.cs" />
     <Compile Include="Model\AnalogOutput.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Model\OutputTag.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignatureProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
