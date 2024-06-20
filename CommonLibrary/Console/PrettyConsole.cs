@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseManager
+namespace CommonLibrary.Console
 {
     public class PrettyConsole
     {
