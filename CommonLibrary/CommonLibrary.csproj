@@ -43,8 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthProvider.cs" />
-    <Compile Include="Console\ConsoleReader.cs" />
-    <Compile Include="Console\PrettyConsole.cs" />
+    <Compile Include="ConsoleTools\ConsoleReader.cs" />
+    <Compile Include="ConsoleTools\PrettyConsole.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\AnalogInput.cs" />
     <Compile Include="Model\AnalogOutput.cs" />
