@@ -114,12 +114,10 @@ namespace DatabaseManager
                         if (tag == null) { continue; }
 
                         tagClientAdapter.AddTag(tag);
-                        Thread.Sleep(5000);
                         break;
 
                     case "6":
-                        tagClientAdapter.RemoveTag("Vrata");
-                        Thread.Sleep(5000);
+                        tagClientAdapter.RemoveTag();
                         break;
 
                     case "x":
@@ -129,9 +127,9 @@ namespace DatabaseManager
 
                     default:
                         PrettyConsole.WriteLine("Error: Invalid choice.");
-                        Thread.Sleep(1000);
                         break;
                 }
+                Thread.Sleep(1000);
 
             }
             StartMenu();

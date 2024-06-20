@@ -1,17 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <tags>
-  <AI name="Termometar" address="1" syncTime="3" isSyncTurned="true" lowLimit="-15" highLimit="40" unit="celsius">
+  <AI name="Termometar" address="1" syncTime="5" isSyncTurned="true" lowLimit="-15" highLimit="40" unit="celsius">
     <description>Meri temperaturu</description>
+    <alarms>
+      <alarm priorityType="LOW" priority="1" threshold="4" />
+      <alarm priorityType="LOW" priority="1" threshold="4" />
+    </alarms>
   </AI>
-  <AO name="Vrata" address="1" value="0" lowLimit="-15" highLimit="40" unit="celsius">
-    <description>Meri temperaturu</description>
+  <AI name="asd" address="asd" syncTime="2" isSyncTurned="true" lowLimit="20" highLimit="50" unit="asdfgfdg">
+    <description>asd</description>
+  </AI>
+  <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
+    <description>gh</description>
   </AO>
   <DI name="Termometar" address="1" syncTime="3" isSyncTurned="true">
     <description>Meri temperaturu</description>
   </DI>
-  <DI name="asda" address="asd" syncTime="1" isSyncTurned="true">
-    <description>asd</description>
+  <DI name="123" address="123" syncTime="1" isSyncTurned="true">
+    <description>123</description>
+  </DI>
+  <DI name="123fg" address="dfsdf" syncTime="2" isSyncTurned="false">
+    <description>cbvnv</description>
   </DI>
   <DO name="Termometar" address="1" value="24">
     <description>Meri temperaturu</description>
+  </DO>
+  <DO name="789" address="789" value="30">
+    <description>789</description>
+  </DO>
+  <DO name="df" address="vbnb" value="4">
+    <description>dfvc</description>
   </DO>
 </tags>

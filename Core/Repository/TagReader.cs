@@ -28,16 +28,17 @@ namespace Core.Repository
                     HighLimit = double.Parse(tag.Attribute("highLimit")?.Value ?? "0"),
                     Unit = tag.Attribute("unit")?.Value,
                     Description = tag.Element("description")?.Value,
-                    Alarms = null, 
+                    Alarms = new List<Alarm>(), 
                 };
 
-                foreach (XElement alarm in tag.Descendants("Alarms"))
+                foreach (XElement alarm in tag.Descendants("alarm"))
                 {
                     analogInput.AddAlarm(new Alarm
                     {
                         PriorityType = alarm.Attribute("priorityType")?.Value == "HIGH" ? AlarmPriorityType.HIGH : AlarmPriorityType.LOW,
                         Priority = int.Parse(alarm.Attribute("priority")?.Value ?? "1"),
                         Threshold = double.Parse(alarm.Attribute("threshold")?.Value ?? "0"),
+                        TagName = analogInput.Name
                     });
                 }
 

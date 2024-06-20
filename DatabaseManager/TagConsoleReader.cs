@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonLibrary.ConsoleTools;
+using CommonLibrary.Model.Enum;
 
 namespace DatabaseManager
 {
@@ -63,7 +64,7 @@ namespace DatabaseManager
             var unit = ConsoleReader.ReadString(infos["unit"], errors["unit"]);
             var driver = ConsoleReader.ReadMenuSelection(driverMenu, drivers);
 
-            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, new List<Alarm>());
+            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, (DriverType)Enum.Parse(typeof(DriverType), driver, true), new List<Alarm>());
         }
 
         public static AnalogOutput ReadAO()
@@ -86,8 +87,9 @@ namespace DatabaseManager
             var address = ConsoleReader.ReadString(infos["address"], errors["address"]);
             var syncTime = ConsoleReader.ReadPositiveInteger(infos["syncTime"], errors["syncTime"]);
             var isSyncOn = ConsoleReader.ReadBool(infos["isSyncOn"]);
+            var driver = ConsoleReader.ReadMenuSelection(driverMenu, drivers);
 
-            return new DigitalInput(name, desc, address, syncTime, isSyncOn);
+            return new DigitalInput(name, desc, address, syncTime, isSyncOn, (DriverType)Enum.Parse(typeof(DriverType), driver, true));
         }
 
         public static DigitalOutput ReadDO()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonLibrary.Model.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,8 +13,9 @@ namespace CommonLibrary.Model
     [KnownType(typeof(DigitalInput))]
     public class InputTag : Tag
     {
-        public InputTag(string name, string description, string address, int syncTime, bool isSyncOn) : base(name, description, address)
+        public InputTag(string name, string description, string address, int syncTime, bool isSyncOn, DriverType driverType) : base(name, description, address)
         {
+            Type = driverType;
             SyncTime = syncTime;
             IsSyncTurned = isSyncOn;
         }
@@ -23,6 +25,11 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public bool IsSyncTurned { get; set; }
+
+        [DataMember]
+        public DriverType Type { get; set; }
+
+        [DataMember]
         public IDriver Driver { get; set; }
 
         public InputTag()
