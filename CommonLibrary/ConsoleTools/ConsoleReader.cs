@@ -118,5 +118,29 @@ namespace CommonLibrary.ConsoleTools
             return returnValues[choice - 1];
         }
 
+        public static double ReadDoubleGreaterThan(double comparison, string info, string error)
+        {
+            while (true)
+            {
+                PrettyConsole.Write(InfoString(info));
+                string input = Console.ReadLine();
+
+                if (double.TryParse(input, out double userInput))
+                {
+                    if (userInput > comparison)
+                    {
+                        return userInput;
+                    }
+                    else
+                    {
+                        PrettyConsole.WriteLine(ErrorString(error));
+                    }
+                }
+                else
+                {
+                    PrettyConsole.WriteLine(ErrorString(error));
+                }
+            }
+        }
     }
 }

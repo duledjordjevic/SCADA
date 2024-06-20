@@ -35,7 +35,7 @@ namespace RTU
         public void Configure()
         {
             device.Min = ConsoleReader.ReadDouble("min value", "");
-            device.Max = ConsoleReader.ReadDouble("max value", "");
+            device.Max = ConsoleReader.ReadDoubleGreaterThan(device.Min, "max value", "");
             device.Rate = ConsoleReader.ReadPositiveInteger("rate in seconds", "");
         }
 

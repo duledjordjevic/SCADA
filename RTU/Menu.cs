@@ -13,6 +13,16 @@ namespace RTU
     {
         private readonly RTDClientAdapter RTDClientAdapter;
 
+        private static readonly string rtu = @"
+        
+               ██████╗ ████████╗██╗   ██╗
+               ██╔══██╗╚══██╔══╝██║   ██║
+               ██████╔╝   ██║   ██║   ██║
+               ██╔══██╗   ██║   ██║   ██║
+               ██║  ██║   ██║   ╚██████╔╝
+               ╚═╝  ╚═╝   ╚═╝    ╚═════╝ 
+            ";
+
         private readonly string startMenu = @"
                 +-------- MENU --------+
                 |1) Register RTU       |
@@ -34,7 +44,7 @@ namespace RTU
             var registered = false;
             while (!registered)
             {
-                PrettyConsole.WriteTitle(startMenu);
+                PrettyConsole.WriteLine(rtu + startMenu);
                 PrettyConsole.Write("Enter choice: ");
                 var input = Console.ReadLine().ToLower();
                 switch (input)
@@ -55,7 +65,8 @@ namespace RTU
                         break;
                 }
             }
-            PrettyConsole.WriteTitle(startMenu);
+            Console.Clear();
+            PrettyConsole.WriteLine(rtu + rtuTitle);
             RTDClientAdapter.SendData();
         }
     }
