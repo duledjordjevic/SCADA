@@ -18,5 +18,16 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public string Address { get; set; }
+
+        protected Tag(string name, string description, string address)
+        {
+            Name = name;
+            Description = description;
+            Address = address;
+        }
+
+        protected Tag()
+        {
+        }
     }
 }

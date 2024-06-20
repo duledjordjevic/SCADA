@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommonLibrary.Model;
 
 namespace DatabaseManager
 {
@@ -16,14 +17,14 @@ namespace DatabaseManager
             TagClient = tagClient;
         }
 
-        public void AddTag()
+        public void AddTag(Tag tag)
         {
-            TagClient.AddTag();
+            TagClient.AddTag(tag);
         }
 
-        public void RemoveTag()
+        public void RemoveTag(string name)
         {
-            TagClient.RemoveTag(12.454);
+            TagClient.RemoveTag(name);
         }
     }
 }

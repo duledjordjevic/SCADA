@@ -25,6 +25,9 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="474e01d2-85e0-42d7-88e9-63d11021859d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="3fd9c958-095c-4e6c-8d14-1c9dcbb6deb1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="efe9cfaf-4b00-4f58-96d3-9b8015d4af9f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="CommonLibrary.Model.xsd" MetadataType="Schema" ID="25d844ae-8b17-454d-aa55-f7dab2d9409e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="CommonLibrary.Model.Enum.xsd" MetadataType="Schema" ID="3f7bc52e-b0c9-45fe-8102-3389547bdb6e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="8f45cd98-e52c-4068-9a2d-daf859b2b7cf" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/TagService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
