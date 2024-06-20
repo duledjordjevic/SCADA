@@ -10,10 +10,11 @@ using System.Xml.Linq;
 
 namespace Core.Service
 {
-    public class RealTimeDriverService : IAdvancedService, IRealTimeDriverService
+    public class RealTimeDriverService : IBaseService, IAdvancedService, IRealTimeDriverService
     {
         public static Dictionary<string, double> RTUs = new Dictionary<string, double>();
         public static Dictionary<string, MessageArrivedDelegate> notifiers = new Dictionary<string, MessageArrivedDelegate>();
+        static MessageArrivedDelegate tempNotifier;
 
         public bool RegisterRTU(string address)
         {
@@ -25,7 +26,8 @@ namespace Core.Service
                 return true;
             } else
             {
-                SendMessage(address, $"Initialization failed!");
+                InitNotifier();
+                SendMessage($"Registration failed!");
                 return false;
             }
         }
@@ -51,6 +53,16 @@ namespace Core.Service
         public void SendMessage(string reciever, string message)
         {
             notifiers[reciever]?.Invoke(message);
+        }
+
+        public void InitNotifier()
+        {
+            tempNotifier = OperationContext.Current.GetCallbackChannel<ICallBack>().MessageArrived;
+        }
+
+        public void SendMessage(string message)
+        {
+            tempNotifier?.Invoke(message);
         }
     }
 }
