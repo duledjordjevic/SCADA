@@ -122,10 +122,13 @@
     <Compile Include="Repository\DatabaseContext.cs" />
     <Compile Include="Repository\TagReader.cs" />
     <Compile Include="Repository\TagWriter.cs" />
+    <Compile Include="Service\Interface\IAdvancedService.cs" />
     <Compile Include="Service\Interface\IBaseService.cs" />
     <Compile Include="Service\Interface\ICallBack.cs" />
     <Compile Include="Service\Interface\IUserService.cs" />
     <Compile Include="Service\Interface\ITagService.cs" />
+    <Compile Include="Service\Interface\IRealTimeDriverService.cs" />
+    <Compile Include="Service\RealTimeDriverService.cs" />
     <Compile Include="Service\TagService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="TagProccessing.cs" />
