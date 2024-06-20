@@ -17,6 +17,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "ReportManager\ReportManager.csproj", "{4FA3E27E-EC39-4469-8A22-99D3DEDA9414}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTU", "RTU\RTU.csproj", "{8D9D0694-0FB9-4573-95B9-62DA06BB876D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{502AC59C-BFEF-4396-8F01-787F6454A91A} = {502AC59C-BFEF-4396-8F01-787F6454A91A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trending", "Trending\Trending.csproj", "{F88D3F0E-BE72-421B-808B-4A2859F82CEA}"
 EndProject
