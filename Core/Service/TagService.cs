@@ -18,10 +18,11 @@ namespace Core.Service
         {
             InitNotifier();
             TagProccessing.LoadTags();
-            TagProccessing.AddTag(tag);
-
-            SendMessage($"Succesfully added new tag");
-            SendMessage($"{tag}");
+            if (TagProccessing.AddTag(tag))
+            {
+                SendMessage($"Succesfully added new tag");
+                SendMessage($"{tag}");
+            }
         }
 
         public void GetOutput(double value)

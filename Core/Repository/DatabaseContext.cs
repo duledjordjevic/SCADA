@@ -13,6 +13,7 @@ namespace Core.Repository
     public class DatabaseContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<ActivatedAlarm> ActivatedAlarms { get; set; }
         public DatabaseContext() : base("name=DefaultConnection")
         {
         }

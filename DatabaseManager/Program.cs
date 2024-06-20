@@ -12,7 +12,15 @@ namespace DatabaseManager
 {
     public class Program
     {
-        public class Callback : IUserServiceCallback, ITagServiceCallback
+        public class TagCallback :  ITagServiceCallback
+        {
+            public void MessageArrived(string message)
+            {
+                PrettyConsole.WriteLine(message);
+            }
+        }
+
+        public class UserCallback : IUserServiceCallback
         {
             public void MessageArrived(string message)
             {
@@ -26,10 +34,10 @@ namespace DatabaseManager
 
         static void Main(string[] args)
         {
-            InstanceContext uic = new InstanceContext(new Callback());
+            InstanceContext uic = new InstanceContext(new UserCallback());
             userClient = new UserServiceClient(uic);
 
-            InstanceContext tic = new InstanceContext(new Callback());
+            InstanceContext tic = new InstanceContext(new TagCallback());
             tagClient = new TagServiceClient(tic);
 
             var menu = new Menu(userClient, tagClient);

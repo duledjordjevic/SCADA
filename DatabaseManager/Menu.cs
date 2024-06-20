@@ -109,11 +109,11 @@ namespace DatabaseManager
 
                     case "5":
                         var tag = TagMenu();
-                        PrettyConsole.WriteLine($"{tag}");
+                        PrettyConsole.WriteLine($"{tag.Name}");
                         if (tag == null) { continue; }
 
                         tagClientAdapter.AddTag(tag);
-                        //Thread.Sleep(5000);
+                        Thread.Sleep(5000);
                         break;
 
                     case "6":

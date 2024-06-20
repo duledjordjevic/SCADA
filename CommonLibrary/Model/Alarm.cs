@@ -19,16 +19,20 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public double Threshold { get; set; }
+        public string TagName { get; set; }
 
         public Alarm() { }
-        public Alarm(AlarmPriorityType priorityType, int priority, double threshold)
+        public Alarm(AlarmPriorityType priorityType, int priority, double threshold, string tagName)
         {
             PriorityType = priorityType;
             Priority = priority;
             Threshold = threshold;
+            TagName = tagName;
         }
-        //public string TagName { get; set; }
 
-
+        public override string ToString()
+        {
+            return $"Alarm [PriorityType={PriorityType}, Priority={Priority}, Threshold={Threshold}]";
+        }
     }
 }

@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 namespace CommonLibrary.Model
 {
     [DataContract]
-    public abstract class InputTag : Tag
+    [KnownType(typeof(AnalogInput))]
+    [KnownType(typeof(DigitalInput))]
+    public class InputTag : Tag
     {
-        protected InputTag(string name, string description, string address, int syncTime, bool isSyncOn) : base(name, description, address)
+        public InputTag(string name, string description, string address, int syncTime, bool isSyncOn) : base(name, description, address)
         {
             SyncTime = syncTime;
             IsSyncTurned = isSyncOn;
@@ -21,9 +23,9 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public bool IsSyncTurned { get; set; }
-        //public Driver Driver { get; set; }
+        public IDriver Driver { get; set; }
 
-        protected InputTag()
+        public InputTag()
         {
             
         }

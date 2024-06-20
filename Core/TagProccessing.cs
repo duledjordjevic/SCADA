@@ -8,22 +8,36 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Core.Repository;
 using System.IO;
+using System.Threading;
+using Core.Model;
 
 namespace Core
 {
     
     public class TagProccessing
     {
-        static readonly string TAGS_CONFIG_PATH = @"C:\Users\Administrator\Desktop\SCADA\Core\scadaConfig.xml";
+        //PATHS
+        static readonly string TAGS_CONFIG_PATH = @"..\..\scadaConfig.xml";
+        static readonly string ALARMS_LOG_PATH = @"..\..\alarmsLog.txt";
 
+        //LOCKS
         static readonly object tagsConfigLock = new object();
+        static readonly object tagsLock = new object();
+        static readonly object activatedAlarmsLock = new object();
+        static readonly object alarmsLogPathLock = new object();
+        static readonly object activatedAlarmsDBLock = new object();
 
+        //LISTS OF ALL TAGS
         public static List<AnalogInput> analogInputs = new List<AnalogInput>();
         public static List<AnalogOutput> analogOutputs = new List<AnalogOutput>();
         public static List<DigitalInput> digitalInputs = new List<DigitalInput>();
         public static List<DigitalOutput> digitalOutputs = new List<DigitalOutput>();
 
-        
+        //CURRENT VALUES
+        static Dictionary<string, Thread> tagThreads = new Dictionary<string, Thread>();
+        static Dictionary<string, double> currentValues = new Dictionary<string, double>();
+        static List<ActivatedAlarm> activatedAlarms = new List<ActivatedAlarm>();
+
 
         public static void LoadTags()
         {
@@ -140,5 +154,111 @@ namespace Core
 
         }
 
+
+        public static void StartThreads()
+        {
+            var allInputTags = analogInputs.Cast<InputTag>()
+                     .Concat(digitalInputs.Cast<InputTag>());
+            foreach (var tag in allInputTags)
+            {
+                Thread thread = new Thread(() => { SimulateInput(tag); });
+                tagThreads[tag.Name] = thread;
+                thread.Start();
+            }
+        }
+
+        private static void SimulateInput(InputTag inputTag)
+        {
+            while (true)
+            {
+                if (!inputTag.IsSyncTurned)
+                {
+                    Thread.Sleep(inputTag.SyncTime * 1000);
+                    continue;
+                }
+
+                double newValue = inputTag.Driver.GetValue(inputTag);
+
+                if (inputTag is AnalogInput analogTag)
+                {
+                    if (newValue >= analogTag.LowLimit && newValue <= analogTag.HighLimit)
+                    {
+                        lock (tagsLock)
+                        {
+                            currentValues[inputTag.Name] = newValue;
+                        }
+                        SaveTagConfiguration();
+                    }
+
+                    CheckAndActivateAlarms(analogTag, newValue);
+
+                }
+                else
+                {
+                    newValue = newValue < 0 ? 0 : 1;
+                    if (newValue != currentValues[inputTag.Name])
+                    {
+                        lock (tagsLock)
+                        {
+                            currentValues[inputTag.Name] = newValue;
+                        }
+                        SaveTagConfiguration();
+                    }
+                }
+            }
+
+        }
+
+        private static void CheckAndActivateAlarms(AnalogInput analogTag, double newValue)
+        {
+            foreach (Alarm alarm in analogTag.Alarms)
+            {
+                if ((alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit + alarm.Threshold)
+                    || (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit - alarm.Threshold))
+                {
+                    ActivateAlarm(new ActivatedAlarm(alarm));
+                }
+            }
+        }
+
+
+        private static void ActivateAlarm(ActivatedAlarm activatedAlarm) 
+        { 
+            foreach (ActivatedAlarm existingAlarm in activatedAlarms)
+            {
+                var timeDifference = (activatedAlarm.TriggeredOn - existingAlarm.TriggeredOn).TotalSeconds;
+                if (activatedAlarm.Alarm.TagName == existingAlarm.Alarm.TagName &&
+                    activatedAlarm.Alarm.PriorityType == existingAlarm.Alarm.PriorityType && timeDifference < 10)
+                {
+                    return; 
+                }
+            }
+
+            lock(activatedAlarmsLock)
+            {
+                activatedAlarms.Add(activatedAlarm);
+            }
+            lock (alarmsLogPathLock)
+            {
+                using (StreamWriter writer = File.AppendText(ALARMS_LOG_PATH))
+                {
+                    writer.WriteLine(activatedAlarm.ToString());
+                }
+            }
+        }
+
+        private static void SaveActivatedAlarmInDB(ActivatedAlarm activatedAlarm)
+        {
+            lock (activatedAlarmsDBLock)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    db.ActivatedAlarms.Add(activatedAlarm);
+                    db.SaveChanges();
+                }
+            }
+        }
     }
+
+
 }

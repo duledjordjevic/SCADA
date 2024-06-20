@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CommonLibrary.Model
 {
-    public interface Driver
+    public interface IDriver
     {
-        double GetValue();
+        double GetValue(InputTag inputTag);
     }
 }
