@@ -7,7 +7,7 @@ using System.Net;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using CommonLibrary.Console;
+using CommonLibrary.ConsoleTools;
 
 namespace DatabaseManager
 {

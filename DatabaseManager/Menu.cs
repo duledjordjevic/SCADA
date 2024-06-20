@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using CommonLibrary.Model;
-using CommonLibrary.Console;
+using CommonLibrary.ConsoleTools;
 
 namespace DatabaseManager
 {
