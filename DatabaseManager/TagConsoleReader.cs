@@ -37,6 +37,19 @@ namespace DatabaseManager
             { "unit", "" }
         };
 
+        private static readonly List<string> drivers = new List<string>
+        {
+            "RTU",
+            "SD"
+        };
+
+        private static readonly string driverMenu = @"
+                +------- DRIVER -------+
+                |1) Real Time Unit     |
+                |2) Simulation Driver  |
+                +----------------------+
+            ";
+
         public static AnalogInput ReadAI()
         {
             var name = ConsoleReader.ReadString(infos["name"], errors["name"]);
@@ -47,6 +60,7 @@ namespace DatabaseManager
             var low = ConsoleReader.ReadDouble(infos["lowLimit"], errors["lowLimit"]);
             var high = ConsoleReader.ReadDouble(infos["highLimit"], errors["highLimit"]);
             var unit = ConsoleReader.ReadString(infos["unit"], errors["unit"]);
+            var driver = ConsoleReader.ReadMenuSelection(driverMenu, drivers);
 
             return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, new List<Alarm>());
         }

@@ -97,5 +97,26 @@ namespace DatabaseManager
             }
         }
 
+        public static string ReadMenuSelection(string menu, List<string> returnValues)
+        {
+            int choice = -1;
+            while (true)
+            {
+                Console.WriteLine(menu);
+                PrettyConsole.Write("Enter choice: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out choice) && choice >= 1 && choice <= returnValues.Count)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Error: Invalid input.");
+                }
+            }
+            return returnValues[choice - 1];
+        }
+
     }
 }
