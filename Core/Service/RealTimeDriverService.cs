@@ -15,16 +15,18 @@ namespace Core.Service
         public static Dictionary<string, double> RTUs = new Dictionary<string, double>();
         public static Dictionary<string, MessageArrivedDelegate> notifiers = new Dictionary<string, MessageArrivedDelegate>();
 
-        public void RegisterRTU(string address)
+        public bool RegisterRTU(string address)
         {
             if (!RTUs.ContainsKey(address)) 
             {
                 RTUs.Add(address, 0);
                 InitNotifier(address);
                 SendMessage(address, $"Registration successful: {address}");
+                return true;
             } else
             {
                 SendMessage(address, $"Initialization failed!");
+                return false;
             }
         }
 

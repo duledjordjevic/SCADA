@@ -11,7 +11,7 @@ namespace Core.Service
     public interface IRealTimeDriverService
     {
         [OperationContract]
-        void RegisterRTU(string address);
+        bool RegisterRTU(string address);
 
         [OperationContract]
         void SendData(string address, double data);
