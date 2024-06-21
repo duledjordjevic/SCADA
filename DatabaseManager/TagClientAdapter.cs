@@ -28,5 +28,11 @@ namespace DatabaseManager
             var name = ConsoleReader.ReadString("tag name", "");
             TagClient.RemoveTag(name);
         }
+
+        public void ToggleScan()
+        {
+            var name = ConsoleReader.ReadString("tag name", "");
+            TagClient.ToggleScan(name);
+        }
     }
 }

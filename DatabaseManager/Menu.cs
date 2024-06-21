@@ -105,7 +105,7 @@ namespace DatabaseManager
                         break;
 
                     case "4":
-                        //ToggleScan();
+                        tagClientAdapter.ToggleScan();
                         break;
 
                     case "5":

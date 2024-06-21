@@ -63,9 +63,15 @@ namespace Core.Service
             throw new NotImplementedException();
         }
 
-        public void ToggleScan()
+        public void ToggleScan(string tagName)
         {
-            throw new NotImplementedException();
+            InitNotifier ();
+            if(TagProccessing.ToggleScan(tagName))
+            {
+                SendMessage("Successfuly toggled tag!");
+                return;
+            }
+            SendMessage("Error: tag not found");
         }
 
         public void InitNotifier()

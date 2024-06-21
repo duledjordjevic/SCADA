@@ -28,12 +28,18 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task GetOutputAsync(double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ToggleScan", ReplyAction="http://tempuri.org/ITagService/ToggleScanResponse")]
-        void ToggleScan();
+        void ToggleScan(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ToggleScan", ReplyAction="http://tempuri.org/ITagService/ToggleScanResponse")]
-        System.Threading.Tasks.Task ToggleScanAsync();
+        System.Threading.Tasks.Task ToggleScanAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.OutputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.AnalogOutput))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.DigitalOutput))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.InputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.AnalogInput))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.DigitalInput))]
         void AddTag(CommonLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
@@ -103,12 +109,12 @@ namespace DatabaseManager.TagServiceReference {
             return base.Channel.GetOutputAsync(value);
         }
         
-        public void ToggleScan() {
-            base.Channel.ToggleScan();
+        public void ToggleScan(string tagName) {
+            base.Channel.ToggleScan(tagName);
         }
         
-        public System.Threading.Tasks.Task ToggleScanAsync() {
-            return base.Channel.ToggleScanAsync();
+        public System.Threading.Tasks.Task ToggleScanAsync(string tagName) {
+            return base.Channel.ToggleScanAsync(tagName);
         }
         
         public void AddTag(CommonLibrary.Model.Tag tag) {

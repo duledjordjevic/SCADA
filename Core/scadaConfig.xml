@@ -13,7 +13,7 @@
   <DI name="Termometar" address="1" syncTime="3" isSyncTurned="true">
     <description>Meri temperaturu</description>
   </DI>
-  <DI name="123" address="123" syncTime="1" isSyncTurned="true">
+  <DI name="123" address="123" syncTime="1" isSyncTurned="false">
     <description>123</description>
   </DI>
   <DI name="123fg" address="dfsdf" syncTime="2" isSyncTurned="false">

@@ -19,7 +19,7 @@ namespace Core.Service
         void GetOutput(double value);
 
         [OperationContract]
-        void ToggleScan();
+        void ToggleScan(string tagName);
 
         [OperationContract]
         void AddTag(Tag tag);
