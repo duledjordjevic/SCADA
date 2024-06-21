@@ -195,6 +195,52 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITagService_GetAllOutputs_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITagService_GetAllOutputs_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_ITagService_ToggleScan_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -423,6 +469,12 @@
   <wsdl:message name="ITagService_GetOutput_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetOutputResponse" />
   </wsdl:message>
+  <wsdl:message name="ITagService_GetAllOutputs_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOutputs" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetAllOutputs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOutputsResponse" />
+  </wsdl:message>
   <wsdl:message name="ITagService_ToggleScan_InputMessage">
     <wsdl:part name="parameters" element="tns:ToggleScan" />
   </wsdl:message>
@@ -458,6 +510,10 @@
     <wsdl:operation name="GetOutput">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetOutput" message="tns:ITagService_GetOutput_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetOutputResponse" message="tns:ITagService_GetOutput_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOutputs">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetAllOutputs" message="tns:ITagService_GetAllOutputs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetAllOutputsResponse" message="tns:ITagService_GetAllOutputs_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ToggleScan">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/ToggleScan" message="tns:ITagService_ToggleScan_InputMessage" />
@@ -501,6 +557,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_ITagService_GetOutput_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOutputs">
+      <soap12:operation soapAction="http://tempuri.org/ITagService/GetAllOutputs" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITagService_GetAllOutputs_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITagService_GetAllOutputs_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

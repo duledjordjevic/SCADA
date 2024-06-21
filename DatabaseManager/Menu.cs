@@ -31,9 +31,10 @@ namespace DatabaseManager
                 |1) Register new user  |
                 |2) Set output         |
                 |3) Get output         |
-                |4) Toggle scan        |
-                |5) Add tag            |
-                |6) Remove tag         |
+                |4) Get all outputs    |
+                |5) Toggle scan        |
+                |6) Add tag            |
+                |7) Remove tag         |
                 |X) Logout             |
                 +----------------------+
             ";
@@ -97,18 +98,22 @@ namespace DatabaseManager
                         break;
 
                     case "2":
-                        //SetOutput();
+                        tagClientAdapter.SetOutput();
                         break;
 
                     case "3":
-                        //GetOutput();
+                        tagClientAdapter.GetOutput();
                         break;
 
                     case "4":
-                        tagClientAdapter.ToggleScan();
+                        tagClientAdapter.GetAllOutputs();
                         break;
 
                     case "5":
+                        tagClientAdapter.ToggleScan();
+                        break;
+
+                    case "6":
                         var tag = TagMenu();
                         PrettyConsole.WriteLine($"{tag.Name}");
                         if (tag == null) { continue; }
@@ -116,7 +121,7 @@ namespace DatabaseManager
                         tagClientAdapter.AddTag(tag);
                         break;
 
-                    case "6":
+                    case "7":
                         tagClientAdapter.RemoveTag();
                         break;
 

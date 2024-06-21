@@ -16,16 +16,22 @@ namespace DatabaseManager.TagServiceReference {
     public interface ITagService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/SetOutput", ReplyAction="http://tempuri.org/ITagService/SetOutputResponse")]
-        void SetOutput(double value);
+        void SetOutput(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/SetOutput", ReplyAction="http://tempuri.org/ITagService/SetOutputResponse")]
-        System.Threading.Tasks.Task SetOutputAsync(double value);
+        System.Threading.Tasks.Task SetOutputAsync(string tagName, double value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetOutput", ReplyAction="http://tempuri.org/ITagService/GetOutputResponse")]
-        void GetOutput(double value);
+        void GetOutput(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetOutput", ReplyAction="http://tempuri.org/ITagService/GetOutputResponse")]
-        System.Threading.Tasks.Task GetOutputAsync(double value);
+        System.Threading.Tasks.Task GetOutputAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutputs", ReplyAction="http://tempuri.org/ITagService/GetAllOutputsResponse")]
+        void GetAllOutputs();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutputs", ReplyAction="http://tempuri.org/ITagService/GetAllOutputsResponse")]
+        System.Threading.Tasks.Task GetAllOutputsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ToggleScan", ReplyAction="http://tempuri.org/ITagService/ToggleScanResponse")]
         void ToggleScan(string tagName);
@@ -93,20 +99,28 @@ namespace DatabaseManager.TagServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void SetOutput(double value) {
-            base.Channel.SetOutput(value);
+        public void SetOutput(string tagName, double value) {
+            base.Channel.SetOutput(tagName, value);
         }
         
-        public System.Threading.Tasks.Task SetOutputAsync(double value) {
-            return base.Channel.SetOutputAsync(value);
+        public System.Threading.Tasks.Task SetOutputAsync(string tagName, double value) {
+            return base.Channel.SetOutputAsync(tagName, value);
         }
         
-        public void GetOutput(double value) {
-            base.Channel.GetOutput(value);
+        public void GetOutput(string tagName) {
+            base.Channel.GetOutput(tagName);
         }
         
-        public System.Threading.Tasks.Task GetOutputAsync(double value) {
-            return base.Channel.GetOutputAsync(value);
+        public System.Threading.Tasks.Task GetOutputAsync(string tagName) {
+            return base.Channel.GetOutputAsync(tagName);
+        }
+        
+        public void GetAllOutputs() {
+            base.Channel.GetAllOutputs();
+        }
+        
+        public System.Threading.Tasks.Task GetAllOutputsAsync() {
+            return base.Channel.GetAllOutputsAsync();
         }
         
         public void ToggleScan(string tagName) {

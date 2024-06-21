@@ -33,11 +33,6 @@ namespace Core.Service
             }
         }
 
-        public void GetOutput(double value)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<string> ListTags(TagType type) 
         {
             return TagProccessing.GetAllTagNames(type);
@@ -58,9 +53,15 @@ namespace Core.Service
         }
 
 
-        public void SetOutput(double value)
+        public void SetOutput(string tagName, double value)
         {
-            throw new NotImplementedException();
+            InitNotifier();
+            if(TagProccessing.SetOutput(tagName, value))
+            {
+                SendMessage("Successfuly changed output!");
+                return;
+            }
+            SendMessage("Error: tag not found");
         }
 
         public void ToggleScan(string tagName)
@@ -81,6 +82,23 @@ namespace Core.Service
         public void SendMessage(string message)
         {
             notifier?.Invoke(message);
+        }
+
+        public void GetOutput(string tagName)
+        {
+            InitNotifier();
+            if (TagProccessing.GetOutput(tagName, out var value))
+            {
+                SendMessage($"tag: {tagName}, value: {value}");
+                return;
+            }
+            SendMessage("Error: tag not found");
+        }
+
+        public void GetAllOutputs()
+        {
+            InitNotifier();
+            SendMessage(TagProccessing.GetAllOutputs());
         }
     }
 }

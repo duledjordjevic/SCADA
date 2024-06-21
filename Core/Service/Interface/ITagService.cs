@@ -13,10 +13,13 @@ namespace Core.Service
     public interface ITagService
     {
         [OperationContract]
-        void SetOutput(double value);
+        void SetOutput(string tagName, double value);
 
         [OperationContract]
-        void GetOutput(double value);
+        void GetOutput(string tagName);
+
+        [OperationContract]
+        void GetAllOutputs();
 
         [OperationContract]
         void ToggleScan(string tagName);
