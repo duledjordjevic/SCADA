@@ -72,11 +72,20 @@ namespace Core.Service
             tempNotifier?.Invoke(message);
         }
 
-        public static double GetValue(string address)
+        public static bool TryGetValue(string address, out double value)
         {
             lock(RTULock)
             {
-                return RTUs.ContainsKey(address) ? RTUs[address] : 0;
+                if (RTUs.ContainsKey(address))
+                {
+                    value = RTUs[address];
+                    return true;
+                }
+                else
+                {
+                    value = 0;
+                    return false;
+                }
             }
         }
     }
