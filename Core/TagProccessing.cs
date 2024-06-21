@@ -22,6 +22,7 @@ namespace Core
     {
         //PATHS
         static readonly string TAGS_CONFIG_PATH = @"..\..\scadaConfig.xml";
+        // TODO: Moved to AlarmProcessing
         static readonly string ALARMS_LOG_PATH = @"..\..\alarmsLog.txt";
 
         //LOCKS
@@ -45,9 +46,11 @@ namespace Core
 
         //EVENTS
         public delegate void TagValueChangedDelegate(InputTag tag, double value);
+        // TODO: Moved to AlarmProcessing
         public delegate void AlarmTriggeredDelegate(ActivatedAlarm alarm, double value);
 
         public static event TagValueChangedDelegate OnTagValueChanged;
+        // TODO: Moved to AlarmProcessing
         public static event AlarmTriggeredDelegate OnAlarmTriggered;
 
 
@@ -178,6 +181,7 @@ namespace Core
                     }
                 }
 
+                // TODO: Replace with RemoveAll
                 lock (activatedAlarmsDBLock)
                 {
                     using (var db = new DatabaseContext())
@@ -189,12 +193,8 @@ namespace Core
                         db.SaveChanges();
                     }
                 }
-
                 return true;
             }
-
-
-
             return false;
         }
 
@@ -264,9 +264,8 @@ namespace Core
         {
             while (true)
             {
-                if (inputTag.IsSyncTurned)
+                if (inputTag.IsSyncTurned && TryGetValueFromDriver(inputTag, out double newValue))
                 {
-                    double newValue = GetValueFromDriver(inputTag);
 
                     if (inputTag is AnalogInput analogTag)
                     {
@@ -279,10 +278,9 @@ namespace Core
 
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
-                            SaveTagCurrentValueInDB((Tag)inputTag, newValue);
+                            TagRepository.Add((Tag)inputTag, newValue);
+                            AlarmProcessing.TryTriggerAlarms(analogTag, newValue);
                         }
-
-                        CheckAndActivateAlarms(analogTag, newValue);
 
                     }
                     else
@@ -297,7 +295,7 @@ namespace Core
 
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
-                            SaveTagCurrentValueInDB((Tag)inputTag, newValue);
+                            TagRepository.Add((Tag)inputTag, newValue);
                         }
                     }
                     Thread.Sleep(inputTag.SyncTime * 1000);
@@ -306,92 +304,19 @@ namespace Core
 
         }
 
-        private static double GetValueFromDriver(InputTag inputTag)
+        private static bool TryGetValueFromDriver(InputTag inputTag, out double value)
         {
+            value = 0;
             switch (inputTag.Type)
             {
                 case (DriverType.RTU):
-                    return RealTimeDriverService.GetValue(inputTag.Address);
+                    return RealTimeDriverService.TryGetValue(inputTag.Address, out value);
                 case (DriverType.SD):
                     //return SimulationDriverService.GetValue(inputTag.Address);
-                    break;
-            }
-
-            return 0;
-        }
-
-        private static void CheckAndActivateAlarms(AnalogInput analogTag, double newValue)
-        {
-            foreach (Alarm alarm in analogTag.Alarms)
-            {
-                if ((alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit + alarm.Threshold)
-                    || (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit - alarm.Threshold))
-                {
-                    ActivateAlarm(new ActivatedAlarm(alarm), newValue);
-                }
-            }
-        }
-
-
-        private static void ActivateAlarm(ActivatedAlarm activatedAlarm, double newValue) 
-        { 
-            foreach (ActivatedAlarm existingAlarm in activatedAlarms)
-            {
-                var timeDifference = (activatedAlarm.TriggeredOn - existingAlarm.TriggeredOn).TotalSeconds;
-                if (activatedAlarm.Alarm.TagName == existingAlarm.Alarm.TagName &&
-                    activatedAlarm.Alarm.PriorityType == existingAlarm.Alarm.PriorityType && timeDifference < 10)
-                {
-                    return; 
-                }
-            }
-
-            OnAlarmTriggered?.Invoke(activatedAlarm, newValue);
-
-            lock(activatedAlarmsLock)
-            {
-                activatedAlarms.Add(activatedAlarm);
-            }
-            lock (alarmsLogPathLock)
-            {
-                using (StreamWriter writer = File.AppendText(ALARMS_LOG_PATH))
-                {
-                    writer.WriteLine(activatedAlarm.ToString());
-                }
-            }
-            SaveActivatedAlarmInDB(activatedAlarm);
-        }
-
-        private static void SaveActivatedAlarmInDB(ActivatedAlarm activatedAlarm)
-        {
-            lock (activatedAlarmsDBLock)
-            {
-                using (var db = new DatabaseContext())
-                {
-                    db.ActivatedAlarms.Add(activatedAlarm);
-                    db.SaveChanges();
-                }
-            }
-        }
-
-
-        private static void SaveTagCurrentValueInDB(Tag tag, double value)
-        {
-            lock (tagValuesDBLock)
-            {
-                using (var db = new DatabaseContext())
-                {
-                    db.TagValues.Add(new TagEntity
-                    {
-                        Type = tag.GetType().Name,
-                        TagName = tag.Name,
-                        Value = value,
-                        Timestamp = DateTime.Now
-                    });
-                    db.SaveChanges();
-                }
+                    return false;
+                default:
+                    return false;
             }
         }
     }
-
-
 }
