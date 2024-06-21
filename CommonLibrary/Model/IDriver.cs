@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonLibrary.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CommonLibrary.Model
 {
-    public interface Driver
+    public interface IDriver
     {
-        double GetValue();
+        double GetValue(string address);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommonLibrary.Model.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -22,23 +23,16 @@ namespace CommonLibrary.Model
         [DataMember]
         public List<Alarm> Alarms { get; set; }
 
-        //public AnalogInput()
-        //{
-        //    Alarms = new List<Alarm>();
-        //}
-
-        public AnalogInput(string name, string description, string address, int syncTime, bool isSyncOn, double low, double high, string unit, List<Alarm> alarms) : base(name, description, address, syncTime, isSyncOn)
+        public AnalogInput(string name, string description, string address, int syncTime, bool isSyncOn, double low, double high, string unit, DriverType driverType,  List<Alarm> alarms) : base(name, description, address, syncTime, isSyncOn, driverType)
         {
             LowLimit = low;
             HighLimit = high;
             Unit = unit;
             Alarms = alarms;
+
         }
 
-        public AnalogInput()
-        {
-            
-        }
+        public AnalogInput() {}
         public AnalogInput(string name, string description,string address, bool isSyncTurned, int syncTime, double lowLimit, double highLimit, string unit, List<Alarm> alarms)
         {
             Name = name;

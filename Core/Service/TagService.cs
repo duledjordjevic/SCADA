@@ -12,16 +12,25 @@ namespace Core.Service
 {
     public class TagService : IBaseService, ITagService
     {
+
         static MessageArrivedDelegate notifier;
+
+        public TagService() 
+        {
+            TagProccessing.LoadTags();
+            TagProccessing.StartThreads();
+            
+        }
 
         public void AddTag(Tag tag)
         {
             InitNotifier();
-            TagProccessing.LoadTags();
-            TagProccessing.AddTag(tag);
 
-            SendMessage($"Succesfully added new tag");
-            SendMessage($"{tag}");
+            if (TagProccessing.AddTag(tag))
+            {
+                SendMessage($"Succesfully added new tag");
+                SendMessage($"{tag}");
+            }
         }
 
         public void GetOutput(double value)
@@ -37,7 +46,6 @@ namespace Core.Service
         public void RemoveTag(string name)
         {
             InitNotifier();
-            TagProccessing.LoadTags();
             
             foreach (var tag in TagProccessing.analogOutputs)
             {

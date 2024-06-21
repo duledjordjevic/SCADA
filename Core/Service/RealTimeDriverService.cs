@@ -1,4 +1,5 @@
 ﻿using Core.Service.Interface;
+using CommonLibrary.Model;
 using Core.Util;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace Core.Service
         public static Dictionary<string, double> RTUs = new Dictionary<string, double>();
         public static Dictionary<string, MessageArrivedDelegate> notifiers = new Dictionary<string, MessageArrivedDelegate>();
         static MessageArrivedDelegate tempNotifier;
+
+        static readonly object RTULock = new object();
+
 
         public bool RegisterRTU(string address)
         {
@@ -40,7 +44,10 @@ namespace Core.Service
             }
             else
             {
-                RTUs[address] = data;
+                lock (RTUs)
+                {
+                    RTUs[address] = data;
+                }
                 SendMessage(address, $"Recieved data: {data}");
             }
         }
@@ -63,6 +70,14 @@ namespace Core.Service
         public void SendMessage(string message)
         {
             tempNotifier?.Invoke(message);
+        }
+
+        public static double GetValue(string address)
+        {
+            lock(RTULock)
+            {
+                return RTUs.ContainsKey(address) ? RTUs[address] : 0;
+            }
         }
     }
 }
