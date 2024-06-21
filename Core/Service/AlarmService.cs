@@ -27,6 +27,7 @@ namespace Core.Service
         {
             InitNotifier();
             AlarmProcessing.OnAlarmTriggered += HandleAlarm;
+            SendMessage("Session initialized successfully.");
         }
 
         private void HandleAlarm(ActivatedAlarm alarm, double value)
