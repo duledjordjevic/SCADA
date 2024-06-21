@@ -132,6 +132,7 @@
     <Compile Include="Model\TagEntity.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AlarmRepository.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
     <Compile Include="Repository\TagReader.cs" />
     <Compile Include="Repository\TagWriter.cs" />

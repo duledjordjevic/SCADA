@@ -178,6 +178,7 @@ namespace Core
                     }
                 }
 
+                // TODO: Replace with RemoveAll
                 lock (activatedAlarmsDBLock)
                 {
                     using (var db = new DatabaseContext())
@@ -189,12 +190,8 @@ namespace Core
                         db.SaveChanges();
                     }
                 }
-
                 return true;
             }
-
-
-
             return false;
         }
 
@@ -264,9 +261,8 @@ namespace Core
         {
             while (true)
             {
-                if (inputTag.IsSyncTurned)
+                if (inputTag.IsSyncTurned && TryGetValueFromDriver(inputTag, out double newValue))
                 {
-                    double newValue = GetValueFromDriver(inputTag);
 
                     if (inputTag is AnalogInput analogTag)
                     {
@@ -280,9 +276,8 @@ namespace Core
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
                             SaveTagCurrentValueInDB((Tag)inputTag, newValue);
+                            CheckAndActivateAlarms(analogTag, newValue);
                         }
-
-                        CheckAndActivateAlarms(analogTag, newValue);
 
                     }
                     else
@@ -306,26 +301,27 @@ namespace Core
 
         }
 
-        private static double GetValueFromDriver(InputTag inputTag)
+        private static bool TryGetValueFromDriver(InputTag inputTag, out double value)
         {
+            value = 0;
             switch (inputTag.Type)
             {
                 case (DriverType.RTU):
-                    return RealTimeDriverService.GetValue(inputTag.Address);
+                    return RealTimeDriverService.TryGetValue(inputTag.Address, out value);
                 case (DriverType.SD):
                     //return SimulationDriverService.GetValue(inputTag.Address);
-                    break;
+                    return false;
+                default:
+                    return false;
             }
-
-            return 0;
         }
 
         private static void CheckAndActivateAlarms(AnalogInput analogTag, double newValue)
         {
             foreach (Alarm alarm in analogTag.Alarms)
             {
-                if ((alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit + alarm.Threshold)
-                    || (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit - alarm.Threshold))
+                if ((alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit - alarm.Threshold)
+                    || (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit + alarm.Threshold))
                 {
                     ActivateAlarm(new ActivatedAlarm(alarm), newValue);
                 }
@@ -358,21 +354,8 @@ namespace Core
                     writer.WriteLine(activatedAlarm.ToString());
                 }
             }
-            SaveActivatedAlarmInDB(activatedAlarm);
+            AlarmRepository.Add(activatedAlarm);
         }
-
-        private static void SaveActivatedAlarmInDB(ActivatedAlarm activatedAlarm)
-        {
-            lock (activatedAlarmsDBLock)
-            {
-                using (var db = new DatabaseContext())
-                {
-                    db.ActivatedAlarms.Add(activatedAlarm);
-                    db.SaveChanges();
-                }
-            }
-        }
-
 
         private static void SaveTagCurrentValueInDB(Tag tag, double value)
         {
