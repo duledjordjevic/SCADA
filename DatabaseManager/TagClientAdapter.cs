@@ -37,6 +37,7 @@ namespace DatabaseManager
 
         public void SetOutput()
         {
+            TagClient.GetAllOutputs();
             var name = ConsoleReader.ReadString("tag name", "");
             var value = ConsoleReader.ReadDouble("value", "not double value");
             TagClient.SetOutput(name, value);

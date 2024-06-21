@@ -25,6 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTU", "RTU\RTU.csproj", "{8
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trending", "Trending\Trending.csproj", "{F88D3F0E-BE72-421B-808B-4A2859F82CEA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{502AC59C-BFEF-4396-8F01-787F6454A91A} = {502AC59C-BFEF-4396-8F01-787F6454A91A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

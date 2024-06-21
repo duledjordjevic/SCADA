@@ -19,14 +19,12 @@ namespace AlarmDisplay
             }
         }
 
-        static AlarmServiceClient alarmClient;
+        public static AlarmServiceClient alarmClient;
 
         static void Main(string[] args)
         {
             InstanceContext uic = new InstanceContext(new AlarmCallback());
             alarmClient = new AlarmServiceClient(uic);
-
-            alarmClient.Subscribe();
 
             var menu = new Menu();
             menu.StartMenu();

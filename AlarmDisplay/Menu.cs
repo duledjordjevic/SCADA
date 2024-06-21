@@ -24,6 +24,7 @@ namespace AlarmDisplay
         public void StartMenu()
         {
             PrettyConsole.WriteLine(title);
+            Program.alarmClient.Subscribe();
             while (true) { }
         }
 
