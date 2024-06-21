@@ -37,5 +37,10 @@ namespace CommonLibrary.Model
             
         }
 
+        public override string ToString()
+        {
+            return $"{base.ToString()}, SyncTime: {SyncTime}, IsSyncTurned: {IsSyncTurned}, Type: {Type}, Driver: {Driver?.ToString() ?? "None"}";
+        }
+
     }
 }
