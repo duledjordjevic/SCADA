@@ -107,6 +107,7 @@ namespace DatabaseManager
 
                     case "4":
                         tagClientAdapter.GetAllOutputs();
+                        Thread.Sleep(6000);
                         break;
 
                     case "5":

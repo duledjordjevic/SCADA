@@ -1,11 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <tags>
-  <AI name="Termometar" address="1" syncTime="5" isSyncTurned="true" lowLimit="-15" highLimit="40" unit="celsius">
-    <description>Meri temperaturu</description>
+  <AI name="Alarmantan" address="alarm" syncTime="2" isSyncTurned="true" lowLimit="-50" highLimit="50" unit="celsius">
+    <description>Pokrece alarm</description>
     <alarms>
-      <alarm priorityType="LOW" priority="1" threshold="4" />
-      <alarm priorityType="LOW" priority="1" threshold="4" />
+      <alarm priorityType="LOW" priority="1" threshold="20" />
+      <alarm priorityType="LOW" priority="1" threshold="20" />
     </alarms>
+  </AI>
+  <AI name="Pumpa" address="RTU" syncTime="5" isSyncTurned="true" lowLimit="30" highLimit="60" unit="l">
+    <description>ashasd</description>
+  </AI>
+  <AI name="pumpa" address="rtu" syncTime="3" isSyncTurned="true" lowLimit="10" highLimit="100" unit="liter">
+    <description>pumpa za vodu</description>
+  </AI>
+  <AI name="rade" address="lalala" syncTime="2" isSyncTurned="true" lowLimit="1" highLimit="90" unit="liter">
+    <description>rade</description>
+  </AI>
+  <AI name="alarmantan" address="nije" syncTime="3" isSyncTurned="true" lowLimit="-50" highLimit="50" unit="liter">
+    <description>asdas</description>
   </AI>
   <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
     <description>gh</description>
