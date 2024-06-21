@@ -51,10 +51,16 @@ namespace CommonLibrary.Model
             Alarms.Add(alarm);
         }
 
+
         public override string ToString()
         {
-            return $"Name: {Name}, Unit: {Unit}";
-        }
+            var baseInfo = base.ToString();
 
+            var alarmInfo = Alarms != null && Alarms.Any()
+                            ? string.Join(", ", Alarms.Select(a => a.ToString()))
+                            : "No Alarms";
+
+            return $"{baseInfo}, LowLimit: {LowLimit}, HighLimit: {HighLimit}, Unit: {Unit}, Alarms: [{alarmInfo}]";
+        }
     }
 }

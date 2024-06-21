@@ -14,10 +14,11 @@ using Core.Service;
 using System.Xml;
 using System.Data.Entity;
 using Google.Protobuf.WellKnownTypes;
+using System.ServiceModel.Configuration;
 
 namespace Core
 {
-    
+
     public class TagProccessing
     {
         //PATHS
@@ -32,6 +33,7 @@ namespace Core
         static readonly object alarmsLogPathLock = new object();
         static readonly object activatedAlarmsDBLock = new object();
         static readonly object tagValuesDBLock = new object();
+        static readonly object tagsLock = new object();
 
         //LISTS OF ALL TAGS
         public static List<AnalogInput> analogInputs = new List<AnalogInput>();
@@ -67,7 +69,7 @@ namespace Core
                             .Concat(digitalInputs.Cast<Tag>())
                             .Concat(digitalOutputs.Cast<Tag>());
 
-            foreach(var tag in allTags)
+            foreach (var tag in allTags)
             {
                 lock (currentValuesLock)
                 {
@@ -91,7 +93,7 @@ namespace Core
 
             var xmlDocument = new XDocument(
                 new XDeclaration("1.0", "utf-8", "yes"),
-                tagsXml 
+                tagsXml
             );
 
             lock (tagsConfigLock)
@@ -99,8 +101,8 @@ namespace Core
                 using (var stream = new FileStream(TAGS_CONFIG_PATH, FileMode.Create))
                 {
                     XmlWriterSettings settings = new XmlWriterSettings();
-                    settings.Encoding = Encoding.UTF8; 
-                    settings.Indent = true; 
+                    settings.Encoding = Encoding.UTF8;
+                    settings.Indent = true;
 
                     using (XmlWriter writer = XmlWriter.Create(stream, settings))
                     {
@@ -114,25 +116,28 @@ namespace Core
         {
             if (IsTagAleradyExist(tag.Name)) return false;
 
-            if (tag is AnalogInput analogInput)
+            lock (tagsLock)
             {
-                analogInputs.Add(analogInput);
-                StartSingleThread(analogInput);
-            }
-            else if(tag is AnalogOutput analogOutput)
-            {
-                analogOutputs.Add(analogOutput);
-                
-            }
-            else if(tag is DigitalInput digitalInput)
-            {
-                digitalInputs.Add(digitalInput);
-                StartSingleThread(digitalInput);
-            }
-            else if(tag is DigitalOutput digitalOutput)
-            {
-                digitalOutputs.Add(digitalOutput);
+                if (tag is AnalogInput analogInput)
+                {
+                    analogInputs.Add(analogInput);
+                    StartSingleThread(analogInput);
+                }
+                else if (tag is AnalogOutput analogOutput)
+                {
+                    analogOutputs.Add(analogOutput);
 
+                }
+                else if (tag is DigitalInput digitalInput)
+                {
+                    digitalInputs.Add(digitalInput);
+                    StartSingleThread(digitalInput);
+                }
+                else if (tag is DigitalOutput digitalOutput)
+                {
+                    digitalOutputs.Add(digitalOutput);
+
+                }
             }
 
 
@@ -148,12 +153,16 @@ namespace Core
 
         public static bool RemoveTag(string tagName)
         {
-            var isRemoved = analogInputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
-                       analogOutputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
-                       digitalInputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
-                       digitalOutputs.RemoveAll(tag => tag.Name == tagName) > 0;
+            bool isRemoved;
+            lock (tagsLock)
+            {
+                isRemoved = analogInputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
+                           analogOutputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
+                           digitalInputs.RemoveAll(tag => tag.Name == tagName) > 0 ||
+                           digitalOutputs.RemoveAll(tag => tag.Name == tagName) > 0;
+            }
 
-            if(isRemoved)
+            if (isRemoved)
             {
                 if (tagThreads.TryGetValue(tagName, out var thread))
                 {
@@ -199,7 +208,7 @@ namespace Core
         }
 
 
-        public static Tag FindTagByName(string name)
+        public static Tag FindTag(string name)
         {
             var allTags = analogInputs.Cast<Tag>()
                             .Concat(analogOutputs.Cast<Tag>())
@@ -208,6 +217,22 @@ namespace Core
 
             return allTags.FirstOrDefault(tag => tag.Name == name);
         }
+        public static InputTag FindInputTag(string name)
+        {
+            var allTags = analogInputs.Cast<InputTag>()
+                            .Concat(digitalInputs.Cast<InputTag>());
+
+            return allTags.FirstOrDefault(tag => tag.Name == name);
+        }
+
+        public static OutputTag FindOutputTag(string name)
+        {
+            var allTags = analogOutputs.Cast<OutputTag>()
+                            .Concat(digitalOutputs.Cast<OutputTag>());
+
+            return allTags.FirstOrDefault(tag => tag.Name == name);
+        }
+
         public static bool IsTagAleradyExist(string tagName)
         {
             return analogInputs.Any(tag => tag.Name == tagName) ||
@@ -318,5 +343,65 @@ namespace Core
                     return false;
             }
         }
+
+
+        public static bool ToggleScan(string tagName)
+        {
+            lock (tagsLock)
+            {
+                var tag = FindInputTag(tagName);
+                if (tag == null) return false;
+
+                tag.IsSyncTurned = !tag.IsSyncTurned;
+                SaveTagConfiguration();
+            }
+
+            return true;
+        }
+
+
+        public static bool SetOutput(string tagName, double value)
+        {
+            lock (tagsLock)
+            {
+                var tag = FindOutputTag(tagName);
+                if (tag == null) return false;
+
+                currentValues[tag.Name] = value;
+                SaveTagConfiguration();
+                TagRepository.Add(tag, value);
+            }
+            return true;
+        }
+
+        public static bool GetOutput(string tagName, out double value)
+        {
+            value = 0.0;
+            lock (tagsLock)
+            {
+                var tag = FindOutputTag(tagName);
+                if (tag == null) return false;
+
+                value = currentValues[tag.Name];
+            }
+            return true;
+        }
+
+        public static string GetAllOutputs()
+        {
+            StringBuilder output = new StringBuilder();
+            lock (tagsLock)
+            {
+                var allTags = analogOutputs.Cast<OutputTag>()
+                            .Concat(digitalOutputs.Cast<OutputTag>());
+                foreach (var tag in allTags)
+                {
+                    output.AppendLine(tag.ToString());
+                }
+            }
+            return output.ToString();
+        }
     }
+
+
 }

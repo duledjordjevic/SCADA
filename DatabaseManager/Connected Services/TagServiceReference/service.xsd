@@ -6,6 +6,7 @@
   <xs:element name="SetOutput">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="value" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
@@ -18,7 +19,7 @@
   <xs:element name="GetOutput">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="value" type="xs:double" />
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -27,9 +28,21 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ToggleScan">
+  <xs:element name="GetAllOutputs">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllOutputsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ToggleScan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ToggleScanResponse">

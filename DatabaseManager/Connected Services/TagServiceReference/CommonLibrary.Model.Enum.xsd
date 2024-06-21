@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="DriverType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RTU" />
+      <xs:enumeration value="SD" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DriverType" nillable="true" type="tns:DriverType" />
+  <xs:simpleType name="AlarmPriorityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOW" />
+      <xs:enumeration value="HIGH" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AlarmPriorityType" nillable="true" type="tns:AlarmPriorityType" />
   <xs:simpleType name="TagType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="DI" />

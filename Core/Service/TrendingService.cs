@@ -1,18 +1,20 @@
-﻿using Core.Model;
-using Core.Util;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Claims;
 using System.ServiceModel;
 using System.Text;
+using CommonLibrary.Model;
+using Core.Service.Interface;
+using Core.Util;
 
 namespace Core.Service
 {
-    public class AlarmService : IBaseService, IAlarmService
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TrendingService" in both code and config file together.
+    public class TrendingService : IBaseService , ITrendingService
     {
         static MessageArrivedDelegate notifier;
-
         public void InitNotifier()
         {
             notifier = OperationContext.Current.GetCallbackChannel<ICallBack>().MessageArrived;
@@ -26,13 +28,13 @@ namespace Core.Service
         public void Subscribe()
         {
             InitNotifier();
-            AlarmProcessing.OnAlarmTriggered += HandleAlarm;
+            TagProccessing.OnTagValueChanged += HandleTagValueChanged;
             SendMessage("Session initialized successfully.");
         }
 
-        private void HandleAlarm(ActivatedAlarm alarm, double value)
+        private void HandleTagValueChanged(InputTag tag, double value)
         {
-            SendMessage($"{alarm} - Value: {value}");
+            SendMessage($"{tag} - Value: {value}");
         }
     }
 }

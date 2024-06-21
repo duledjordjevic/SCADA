@@ -13,6 +13,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{18632785-D126-466F-8644-6A1023A72AAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmDisplay", "AlarmDisplay\AlarmDisplay.csproj", "{54C41CC2-7063-4B29-93BD-8C32DD2F9272}"
+	ProjectSection(ProjectDependencies) = postProject
+		{502AC59C-BFEF-4396-8F01-787F6454A91A} = {502AC59C-BFEF-4396-8F01-787F6454A91A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "ReportManager\ReportManager.csproj", "{4FA3E27E-EC39-4469-8A22-99D3DEDA9414}"
 EndProject
@@ -22,6 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTU", "RTU\RTU.csproj", "{8
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trending", "Trending\Trending.csproj", "{F88D3F0E-BE72-421B-808B-4A2859F82CEA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{502AC59C-BFEF-4396-8F01-787F6454A91A} = {502AC59C-BFEF-4396-8F01-787F6454A91A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
