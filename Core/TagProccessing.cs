@@ -22,6 +22,7 @@ namespace Core
     {
         //PATHS
         static readonly string TAGS_CONFIG_PATH = @"..\..\scadaConfig.xml";
+        // TODO: Moved to AlarmProcessing
         static readonly string ALARMS_LOG_PATH = @"..\..\alarmsLog.txt";
 
         //LOCKS
@@ -45,9 +46,11 @@ namespace Core
 
         //EVENTS
         public delegate void TagValueChangedDelegate(InputTag tag, double value);
+        // TODO: Moved to AlarmProcessing
         public delegate void AlarmTriggeredDelegate(ActivatedAlarm alarm, double value);
 
         public static event TagValueChangedDelegate OnTagValueChanged;
+        // TODO: Moved to AlarmProcessing
         public static event AlarmTriggeredDelegate OnAlarmTriggered;
 
 
@@ -276,7 +279,7 @@ namespace Core
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
                             TagRepository.Add((Tag)inputTag, newValue);
-                            CheckAndActivateAlarms(analogTag, newValue);
+                            AlarmProcessing.TryTriggerAlarms(analogTag, newValue);
                         }
 
                     }
@@ -314,47 +317,6 @@ namespace Core
                 default:
                     return false;
             }
-        }
-
-        private static void CheckAndActivateAlarms(AnalogInput analogTag, double newValue)
-        {
-            foreach (Alarm alarm in analogTag.Alarms)
-            {
-                if ((alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit - alarm.Threshold)
-                    || (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit + alarm.Threshold))
-                {
-                    ActivateAlarm(new ActivatedAlarm(alarm), newValue);
-                }
-            }
-        }
-
-
-        private static void ActivateAlarm(ActivatedAlarm activatedAlarm, double newValue) 
-        { 
-            foreach (ActivatedAlarm existingAlarm in activatedAlarms)
-            {
-                var timeDifference = (activatedAlarm.TriggeredOn - existingAlarm.TriggeredOn).TotalSeconds;
-                if (activatedAlarm.Alarm.TagName == existingAlarm.Alarm.TagName &&
-                    activatedAlarm.Alarm.PriorityType == existingAlarm.Alarm.PriorityType && timeDifference < 10)
-                {
-                    return; 
-                }
-            }
-
-            OnAlarmTriggered?.Invoke(activatedAlarm, newValue);
-
-            lock(activatedAlarmsLock)
-            {
-                activatedAlarms.Add(activatedAlarm);
-            }
-            lock (alarmsLogPathLock)
-            {
-                using (StreamWriter writer = File.AppendText(ALARMS_LOG_PATH))
-                {
-                    writer.WriteLine(activatedAlarm.ToString());
-                }
-            }
-            AlarmRepository.Add(activatedAlarm);
         }
     }
 }
