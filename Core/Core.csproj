@@ -135,6 +135,7 @@
     <Compile Include="Repository\AlarmRepository.cs" />
     <Compile Include="Repository\DatabaseContext.cs" />
     <Compile Include="Repository\TagReader.cs" />
+    <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Repository\TagWriter.cs" />
     <Compile Include="Service\Interface\IAdvancedService.cs" />
     <Compile Include="Service\Interface\IBaseService.cs" />

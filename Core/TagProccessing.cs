@@ -275,7 +275,7 @@ namespace Core
 
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
-                            SaveTagCurrentValueInDB((Tag)inputTag, newValue);
+                            TagRepository.Add((Tag)inputTag, newValue);
                             CheckAndActivateAlarms(analogTag, newValue);
                         }
 
@@ -292,7 +292,7 @@ namespace Core
 
                             OnTagValueChanged?.Invoke(inputTag, newValue);
                             SaveTagConfiguration();
-                            SaveTagCurrentValueInDB((Tag)inputTag, newValue);
+                            TagRepository.Add((Tag)inputTag, newValue);
                         }
                     }
                     Thread.Sleep(inputTag.SyncTime * 1000);
@@ -356,25 +356,5 @@ namespace Core
             }
             AlarmRepository.Add(activatedAlarm);
         }
-
-        private static void SaveTagCurrentValueInDB(Tag tag, double value)
-        {
-            lock (tagValuesDBLock)
-            {
-                using (var db = new DatabaseContext())
-                {
-                    db.TagValues.Add(new TagEntity
-                    {
-                        Type = tag.GetType().Name,
-                        TagName = tag.Name,
-                        Value = value,
-                        Timestamp = DateTime.Now
-                    });
-                    db.SaveChanges();
-                }
-            }
-        }
     }
-
-
 }

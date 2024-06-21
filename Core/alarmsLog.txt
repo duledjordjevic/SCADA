@@ -40,3 +40,6 @@ ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], 
 ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:38:06]
 ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:38:32]
 ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:38:44]
+ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:54:27]
+ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:54:42]
+ActivatedAlarm [Id=0, Alarm=Alarm [PriorityType=LOW, Priority=1, Threshold=20], TriggeredOn=2024-06-21 16:54:58]
