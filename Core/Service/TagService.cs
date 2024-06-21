@@ -28,7 +28,7 @@ namespace Core.Service
 
             if (TagProccessing.AddTag(tag))
             {
-                SendMessage($"Succesfully added new tag");
+                SendMessage($"New tag added successfuly.");
                 SendMessage($"{tag}");
             }
         }
@@ -47,16 +47,13 @@ namespace Core.Service
         {
             InitNotifier();
             
-            foreach (var tag in TagProccessing.analogOutputs)
-            {
-                SendMessage(tag.ToString());
-            }
+            var removed = TagProccessing.RemoveTag(name);
 
-            TagProccessing.RemoveTag(name);
-
-            foreach (var tag in TagProccessing.analogOutputs)
+            if (removed) {
+                SendMessage("Tag removed successfuly.");
+            } else
             {
-                SendMessage(tag.ToString());
+                SendMessage("Error: Tag doesn`t exist!");
             }
         }
 

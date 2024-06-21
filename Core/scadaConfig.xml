@@ -7,9 +7,6 @@
       <alarm priorityType="LOW" priority="1" threshold="4" />
     </alarms>
   </AI>
-  <AI name="asd" address="asd" syncTime="2" isSyncTurned="true" lowLimit="20" highLimit="50" unit="asdfgfdg">
-    <description>asd</description>
-  </AI>
   <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
     <description>gh</description>
   </AO>
@@ -21,6 +18,9 @@
   </DI>
   <DI name="123fg" address="dfsdf" syncTime="2" isSyncTurned="false">
     <description>cbvnv</description>
+  </DI>
+  <DI name="asdasd" address="asdasd" syncTime="4" isSyncTurned="true">
+    <description>asdasd</description>
   </DI>
   <DO name="Termometar" address="1" value="24">
     <description>Meri temperaturu</description>
