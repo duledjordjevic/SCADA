@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace CommonLibrary.Model
 {
     [DataContract]
-    public abstract class Tag
+    [KnownType(typeof(OutputTag))]
+    [KnownType(typeof(InputTag))]
+    public class Tag
     {
         [DataMember]
         public string Name { get; set; }
@@ -19,14 +21,14 @@ namespace CommonLibrary.Model
         [DataMember]
         public string Address { get; set; }
 
-        protected Tag(string name, string description, string address)
+        public Tag(string name, string description, string address)
         {
             Name = name;
             Description = description;
             Address = address;
         }
 
-        protected Tag()
+        public Tag()
         {
         }
     }

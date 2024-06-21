@@ -50,9 +50,10 @@
     <Compile Include="Model\AnalogOutput.cs" />
     <Compile Include="Model\DigitalInput.cs" />
     <Compile Include="Model\DigitalOutput.cs" />
-    <Compile Include="Model\Driver.cs" />
+    <Compile Include="Model\Enum\DriverType.cs" />
     <Compile Include="Model\Enum\AlarmPriorityType.cs" />
     <Compile Include="Model\Enum\TagType.cs" />
+    <Compile Include="Model\IDriver.cs" />
     <Compile Include="Model\InputTag.cs" />
     <Compile Include="Model\OutputTag.cs" />
     <Compile Include="Model\Tag.cs" />

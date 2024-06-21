@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 namespace CommonLibrary.Model
 {
     [DataContract]
-    public abstract class OutputTag : Tag
+    [KnownType(typeof(AnalogOutput))]
+    [KnownType(typeof(DigitalOutput))]
+    public class OutputTag : Tag
     {
         [DataMember]
         public double Value { get; set; }
 
-        protected OutputTag(string name, string description, string address, double value) : base(name, description, address)
+        public OutputTag(string name, string description, string address, double value) : base(name, description, address)
         {
             Value = value;
         }
 
-        protected OutputTag()
+        public OutputTag()
         {
             
         }

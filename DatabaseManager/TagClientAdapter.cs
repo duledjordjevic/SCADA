@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommonLibrary.Model;
+using CommonLibrary.ConsoleTools;
 
 namespace DatabaseManager
 {
@@ -22,8 +23,9 @@ namespace DatabaseManager
             TagClient.AddTag(tag);
         }
 
-        public void RemoveTag(string name)
+        public void RemoveTag()
         {
+            var name = ConsoleReader.ReadString("tag name", "");
             TagClient.RemoveTag(name);
         }
     }

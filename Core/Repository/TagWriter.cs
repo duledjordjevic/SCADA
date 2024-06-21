@@ -12,61 +12,104 @@ namespace Core.Repository
     {
         public static List<XElement> GetXmlAnalogInputs(List<AnalogInput> analogInputs)
         {
-            return analogInputs.Select(tag => new XElement("AI",
-                new XAttribute("name", tag.Name),
-                new XAttribute("address", tag.Address),
-                new XAttribute("syncTime", tag.SyncTime),
-                new XAttribute("isSyncTurned", tag.IsSyncTurned.ToString().ToLower()),
-                //new XAttribute("driver", tag.Driver),
-                new XAttribute("lowLimit", tag.LowLimit),
-                new XAttribute("highLimit", tag.HighLimit),
-                new XAttribute("unit", tag.Unit),
-                new XElement("description", tag.Description),
-                new XElement("alarms",
-                    tag.Alarms.Select(alarm =>
-                        new XElement("alarm",
-                            new XAttribute("priorityType", alarm.PriorityType.ToString()),
-                            new XAttribute("priority", alarm.Priority),
-                            new XAttribute("threshold", alarm.Threshold)
+            return analogInputs.Select(tag =>
+            {
+                var aiElement = new XElement("AI",
+                    new XAttribute("name", tag.Name ?? "Unknown"),
+                    new XAttribute("address", tag.Address ?? "0"), 
+                    new XAttribute("syncTime", tag.SyncTime),
+                    new XAttribute("isSyncTurned", tag.IsSyncTurned.ToString().ToLower()),
+                    // new XAttribute("driver", tag.Driver ?? "Unknown"), // Ako imate atribut driver
+                    new XAttribute("lowLimit", tag.LowLimit),
+                    new XAttribute("highLimit", tag.HighLimit),
+                    new XAttribute("unit", tag.Unit ?? "unknown") 
+                );
+
+                if (!string.IsNullOrWhiteSpace(tag.Description))
+                {
+                    aiElement.Add(new XElement("description", tag.Description));
+                }
+
+                if (tag.Alarms != null && tag.Alarms.Any())
+                {
+                    var alarmsElement = new XElement("alarms",
+                        tag.Alarms.Select(alarm =>
+                            new XElement("alarm",
+                                new XAttribute("priorityType", alarm.PriorityType.ToString()),
+                                new XAttribute("priority", alarm.Priority),
+                                new XAttribute("threshold", alarm.Threshold)
+                            )
                         )
-                    )
-                )
-            )).ToList();
+                    );
+
+                    aiElement.Add(alarmsElement);
+                }
+
+                return aiElement;
+            }).ToList();
         }
 
         public static List<XElement> GetXmlAnalogOutputs(List<AnalogOutput> analogOutputs)
         {
-            return analogOutputs.Select(output => new XElement("AO",
-                new XAttribute("name", output.Name),
-                new XAttribute("address", output.Address),
-                new XAttribute("value", output.Value),
-                new XAttribute("lowLimit", output.LowLimit),
-                new XAttribute("highLimit", output.HighLimit),
-                new XAttribute("unit", output.Unit),
-                new XElement("description", output.Description)
-            )).ToList();
+            return analogOutputs.Select(output =>
+            {
+                var aoElement = new XElement("AO",
+                    new XAttribute("name", output.Name ?? "Unknown"), 
+                    new XAttribute("address", output.Address ?? "0"), 
+                    new XAttribute("value", output.Value),
+                    new XAttribute("lowLimit", output.LowLimit),
+                    new XAttribute("highLimit", output.HighLimit),
+                    new XAttribute("unit", output.Unit ?? "unknown") 
+                );
+
+                if (!string.IsNullOrWhiteSpace(output.Description))
+                {
+                    aoElement.Add(new XElement("description", output.Description));
+                }
+
+                return aoElement;
+            }).ToList();
         }
 
         public static List<XElement> GetXmlDigitalInputs(List<DigitalInput> digitalInputs)
         {
-            return digitalInputs.Select(input => new XElement("DI",
-                new XAttribute("name", input.Name),
-                new XAttribute("address", input.Address),
-                new XAttribute("syncTime", input.SyncTime),
-                new XAttribute("isSyncTurned", input.IsSyncTurned.ToString().ToLower()),
-                //new XAttribute("driver", input.Driver),
-                new XElement("description", input.Description)
-            )).ToList();
+            return digitalInputs.Select(input =>
+            {
+                var diElement = new XElement("DI",
+                    new XAttribute("name", input.Name ?? "Unknown"), 
+                    new XAttribute("address", input.Address ?? "0"), 
+                    new XAttribute("syncTime", input.SyncTime),
+                    new XAttribute("isSyncTurned", input.IsSyncTurned.ToString().ToLower())
+                );
+
+                if (!string.IsNullOrWhiteSpace(input.Description))
+                {
+                    diElement.Add(new XElement("description", input.Description));
+                }
+
+                return diElement;
+            }).ToList();
         }
 
         public static List<XElement> GetXmlDigitalOutputs(List<DigitalOutput> digitalOutputs)
         {
-            return digitalOutputs.Select(output => new XElement("DO",
-                new XAttribute("name", output.Name),
-                new XAttribute("address", output.Address),
-                new XAttribute("value", output.Value),
-                new XElement("description", output.Description)
-            )).ToList();
+            return digitalOutputs.Select(output =>
+            {
+                var doElement = new XElement("DO",
+                    new XAttribute("name", output.Name ?? "Unknown"), 
+                    new XAttribute("address", output.Address ?? "0"), 
+                    new XAttribute("value", output.Value)
+                );
+
+                if (!string.IsNullOrWhiteSpace(output.Description))
+                {
+                    doElement.Add(new XElement("description", output.Description));
+                }
+
+                return doElement;
+            }).ToList();
         }
+
+
     }
 }
