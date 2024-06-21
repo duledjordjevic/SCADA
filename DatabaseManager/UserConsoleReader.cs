@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommonLibrary.ConsoleTools;
 
 namespace DatabaseManager
 {
-    public class ConsoleReader
+    public class UserConsoleReader
     {
         public static string ReadPassword()
         {

@@ -34,16 +34,22 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task ToggleScanAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
-        void AddTag();
+        void AddTag(CommonLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
-        System.Threading.Tasks.Task AddTagAsync();
+        System.Threading.Tasks.Task AddTagAsync(CommonLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/RemoveTag", ReplyAction="http://tempuri.org/ITagService/RemoveTagResponse")]
-        void RemoveTag(double value);
+        void RemoveTag(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/RemoveTag", ReplyAction="http://tempuri.org/ITagService/RemoveTagResponse")]
-        System.Threading.Tasks.Task RemoveTagAsync(double value);
+        System.Threading.Tasks.Task RemoveTagAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ListTags", ReplyAction="http://tempuri.org/ITagService/ListTagsResponse")]
+        string[] ListTags(CommonLibrary.Model.Enum.TagType type);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ListTags", ReplyAction="http://tempuri.org/ITagService/ListTagsResponse")]
+        System.Threading.Tasks.Task<string[]> ListTagsAsync(CommonLibrary.Model.Enum.TagType type);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -105,20 +111,28 @@ namespace DatabaseManager.TagServiceReference {
             return base.Channel.ToggleScanAsync();
         }
         
-        public void AddTag() {
-            base.Channel.AddTag();
+        public void AddTag(CommonLibrary.Model.Tag tag) {
+            base.Channel.AddTag(tag);
         }
         
-        public System.Threading.Tasks.Task AddTagAsync() {
-            return base.Channel.AddTagAsync();
+        public System.Threading.Tasks.Task AddTagAsync(CommonLibrary.Model.Tag tag) {
+            return base.Channel.AddTagAsync(tag);
         }
         
-        public void RemoveTag(double value) {
-            base.Channel.RemoveTag(value);
+        public void RemoveTag(string name) {
+            base.Channel.RemoveTag(name);
         }
         
-        public System.Threading.Tasks.Task RemoveTagAsync(double value) {
-            return base.Channel.RemoveTagAsync(value);
+        public System.Threading.Tasks.Task RemoveTagAsync(string name) {
+            return base.Channel.RemoveTagAsync(name);
+        }
+        
+        public string[] ListTags(CommonLibrary.Model.Enum.TagType type) {
+            return base.Channel.ListTags(type);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListTagsAsync(CommonLibrary.Model.Enum.TagType type) {
+            return base.Channel.ListTagsAsync(type);
         }
     }
 }

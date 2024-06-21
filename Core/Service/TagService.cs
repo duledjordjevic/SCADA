@@ -14,35 +14,14 @@ namespace Core.Service
     {
         static MessageArrivedDelegate notifier;
 
-        public void AddTag()
+        public void AddTag(Tag tag)
         {
             InitNotifier();
             TagProccessing.LoadTags();
+            TagProccessing.AddTag(tag);
 
-            List<Alarm> alarms = new List<Alarm>
-            {
-                new Alarm(AlarmPriorityType.LOW, 1, 4.0),
-                new Alarm(AlarmPriorityType.HIGH, 2, 35.0)
-            };
-
-            AnalogInput analogInput = new AnalogInput(
-                name: "TemperatureSensor",
-                description: "Measures temperature",
-                address: "1",
-                isSyncTurned: true,
-                syncTime: 3,
-                lowLimit: -10.0,
-                highLimit: 50.0,
-                unit: "Celsius",
-                alarms: alarms
-            );
-
-
-            TagProccessing.AddTag(analogInput);
-            foreach (var tag in TagProccessing.analogInputs)
-            {
-                SendMessage(tag.ToString());
-            }
+            SendMessage($"Succesfully added new tag");
+            SendMessage($"{tag}");
         }
 
         public void GetOutput(double value)
@@ -50,19 +29,24 @@ namespace Core.Service
             throw new NotImplementedException();
         }
 
-        public void RemoveTag(double value)
+        public List<string> ListTags(TagType type) 
+        {
+            return TagProccessing.GetAllTagNames(type);
+        }
+
+        public void RemoveTag(string name)
         {
             InitNotifier();
             TagProccessing.LoadTags();
-
-            foreach (var tag in TagProccessing.analogInputs)
+            
+            foreach (var tag in TagProccessing.analogOutputs)
             {
                 SendMessage(tag.ToString());
             }
 
-            TagProccessing.RemoveTag("TemperatureSensor");
+            TagProccessing.RemoveTag(name);
 
-            foreach (var tag in TagProccessing.analogInputs)
+            foreach (var tag in TagProccessing.analogOutputs)
             {
                 SendMessage(tag.ToString());
             }

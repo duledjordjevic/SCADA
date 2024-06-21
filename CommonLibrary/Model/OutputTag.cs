@@ -12,5 +12,15 @@ namespace CommonLibrary.Model
     {
         [DataMember]
         public double Value { get; set; }
+
+        protected OutputTag(string name, string description, string address, double value) : base(name, description, address)
+        {
+            Value = value;
+        }
+
+        protected OutputTag()
+        {
+            
+        }
     }
 }

@@ -8,6 +8,8 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CommonLibrary.Model;
+using CommonLibrary.ConsoleTools;
 
 namespace DatabaseManager
 {
@@ -16,16 +18,6 @@ namespace DatabaseManager
     {
         private readonly UserClientAdapter userClientAdapter;
         private readonly TagClientAdapter tagClientAdapter;
-
-        private readonly string title = @"
-                
-         ███████╗ ██████╗ █████╗ ██████╗  █████╗ 
-         ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗
-         ███████╗██║     ███████║██║  ██║███████║
-         ╚════██║██║     ██╔══██║██║  ██║██╔══██║
-         ███████║╚██████╗██║  ██║██████╔╝██║  ██║
-         ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝                 
-            ";
 
         private readonly string startMenu = @"
                 +-------- MENU --------+
@@ -46,6 +38,16 @@ namespace DatabaseManager
                 +----------------------+
             ";
 
+        private readonly string tagMenu = @"
+                +-------- TAGS --------+
+                |1) Digital input      |
+                |2) Digital output     |
+                |3) Analog input       |
+                |4) Analog output      |
+                |X) Exit               |
+                +----------------------+
+            ";
+
         private string token;
 
         public Menu(UserServiceClient userClient, TagServiceClient tagClient)
@@ -56,9 +58,10 @@ namespace DatabaseManager
 
         public void StartMenu()
         {
-            while (true) 
+            token = "";
+            while (token.Equals("")) 
             {
-                Console.WriteLine(title + startMenu);
+                PrettyConsole.WriteTitle(startMenu);
                 PrettyConsole.Write("Enter choice: ");
                 var input = Console.ReadLine().ToLower();
                 switch (input)
@@ -74,23 +77,17 @@ namespace DatabaseManager
                     default:
                         PrettyConsole.WriteLine("Error: Invalid choice.");
                         Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                 }
-
-                if (!token.Equals("")) { break; }
             }
-
-            Console.Clear();
             MainMenu();
         }
 
         public void MainMenu()
         {
-            var valid = false;
-            while (!valid)
+            while (!token.Equals(""))
             {
-                Console.WriteLine(title + mainMenu);
+                PrettyConsole.WriteTitle(mainMenu);
                 PrettyConsole.Write("Enter choice: ");
                 var input = Console.ReadLine().ToLower();
                 switch (input)
@@ -112,12 +109,16 @@ namespace DatabaseManager
                         break;
 
                     case "5":
-                        tagClientAdapter.AddTag();
-                        Thread.Sleep(5000);
+                        var tag = TagMenu();
+                        PrettyConsole.WriteLine($"{tag}");
+                        if (tag == null) { continue; }
+
+                        tagClientAdapter.AddTag(tag);
+                        //Thread.Sleep(5000);
                         break;
 
                     case "6":
-                        tagClientAdapter.RemoveTag();
+                        tagClientAdapter.RemoveTag("Vrata");
                         Thread.Sleep(5000);
                         break;
 
@@ -129,18 +130,53 @@ namespace DatabaseManager
                     default:
                         PrettyConsole.WriteLine("Error: Invalid choice.");
                         Thread.Sleep(1000);
-                        Console.Clear();
                         break;
                 }
-                
-                Console.Clear();
 
-                if (token.Equals("")) { break; }
             }
             StartMenu();
         }
 
-        
+        public Tag TagMenu()
+        {
+            Tag tag = null;
+            while (tag == null)
+            {
+                PrettyConsole.WriteTitle(tagMenu);
+                PrettyConsole.Write("Enter choice: ");
+                var input = Console.ReadLine().ToLower();
+
+                switch (input)
+                {
+                    case "1":
+                        tag = TagConsoleReader.ReadDI();
+                        break;
+
+                    case "2":
+                        tag = TagConsoleReader.ReadDO();
+                        break;
+
+                    case "3":
+                        tag = TagConsoleReader.ReadAI();
+                        break;
+
+                    case "4":
+                        tag = TagConsoleReader.ReadAO();
+                        break;
+
+                    case "x":
+                        return null;
+
+                    default:
+                        PrettyConsole.WriteLine("Error: Invalid choice.");
+                        Thread.Sleep(1000);
+                        break;
+                }
+            }
+            return tag;
+        }
+
+
 
 
     }
