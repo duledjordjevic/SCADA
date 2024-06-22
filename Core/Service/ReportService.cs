@@ -34,9 +34,9 @@ namespace Core.Service
             return TagRepository.GetLastDITagValues();
         }
 
-        public List<TagEntity> GetTagValuesById(int tagId)
+        public List<TagEntity> GetTagValuesByName(string name)
         {
-            return TagRepository.GetTagValuesById(tagId);
+            return TagRepository.GetTagValuesByName(name);
         }
 
         public List<TagEntity> GetTagValuesByPeriod(DateTime startTime, DateTime endTime)

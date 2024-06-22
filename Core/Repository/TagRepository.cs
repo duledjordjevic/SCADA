@@ -75,14 +75,14 @@ namespace Core.Repository
             }
         }
 
-        public static List<TagEntity> GetTagValuesById(int tagId)
+        public static List<TagEntity> GetTagValuesByName(string name)
         {
             lock (dbLock)
             {
                 using (var db = new DatabaseContext())
                 {
                     return db.TagValues
-                             .Where(tv => tv.Id == tagId)
+                             .Where(tv => tv.TagName == name)
                              .OrderBy(tv => tv.Value)
                              .ToList();
                 }

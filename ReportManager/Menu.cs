@@ -1,11 +1,14 @@
 ﻿using CommonLibrary.ConsoleTools;
 using System;
 using System.Threading;
+using ReportManager.ReportServiceReference;
 
 namespace ReportManager
 {
     public class Menu
     {
+        private ReportClientAdapter reportClientAdapter;
+
         private readonly string title = @"
 
       ██████╗ ███████╗██████╗  ██████╗ ██████╗ ████████╗
@@ -28,10 +31,10 @@ namespace ReportManager
                 +------------------------+
             ";
 
-        //public Menu (ReportClientService reportClient)
-        //{
-        //    reportClientAdapter = new ReportClientAdapter(reportClient);
-        //}   
+        public Menu(ReportServiceClient reportClient)
+        {
+            reportClientAdapter = new ReportClientAdapter(reportClient);
+        }
 
         public void StartMenu()
         {
@@ -43,27 +46,27 @@ namespace ReportManager
                 switch (input)
                 {
                     case "1":
-                        // Implement logic for option 1
+                        reportClientAdapter.GetAlarmsByPeriod();
                         break;
 
                     case "2":
-                        // Implement logic for option 2
+                        reportClientAdapter.GetAlarmsByPriority();
                         break;
 
                     case "3":
-                        // Implement logic for option 3
+                        reportClientAdapter.GetTagValuesByPeriod();
                         break;
 
                     case "4":
-                        // Implement logic for option 4
+                        reportClientAdapter.GetLastAITagValues();
                         break;
 
                     case "5":
-                        // Implement logic for option 5
+                        reportClientAdapter.GetLastDITagValues();
                         break;
 
                     case "6":
-                        // Implement logic for option 6
+                        reportClientAdapter.GetTagValuesByName();
                         break;
 
                     case "x":
@@ -75,7 +78,7 @@ namespace ReportManager
                         Thread.Sleep(1000);
                         break;
                 }
-                Console.Clear();
+
             }
         }
     }

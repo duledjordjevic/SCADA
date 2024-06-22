@@ -27,6 +27,6 @@ namespace Core.Service
         List<TagEntity> GetLastDITagValues();
 
         [OperationContract]
-        List<TagEntity> GetTagValuesById(int tagId);
+        List<TagEntity> GetTagValuesByName(string name);
     }
 }
