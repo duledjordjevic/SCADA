@@ -22,18 +22,20 @@ namespace Core.Model
         [DataMember]
         public DateTime TriggeredOn { get; set; }
 
+        [DataMember]
+        public double Value { get; set; }
+
         public ActivatedAlarm() { }
-        public ActivatedAlarm(Alarm alarm)
+        public ActivatedAlarm(Alarm alarm, double value)
         {
             Alarm = alarm;
             TriggeredOn = DateTime.Now;
+            Value = value;
         }
 
         public override string ToString()
         {
-            return $"ActivatedAlarm [Id={Id}, " +
-                   $"Alarm={(Alarm?.ToString() ?? "null")}, " +
-                   $"TriggeredOn={TriggeredOn:yyyy-MM-dd HH:mm:ss}]";
+            return $"{Alarm.TagName}: {Value} - {Alarm.PriorityType} [{TriggeredOn}]";
         }
     }
 }

@@ -30,9 +30,9 @@ namespace Core.Service
             SendMessage("Session initialized successfully.");
         }
 
-        private void HandleAlarm(ActivatedAlarm alarm, double value)
+        private void HandleAlarm(ActivatedAlarm alarm)
         {
-            SendMessage($"{alarm} - Value: {value}");
+            SendMessage($"{alarm}");
         }
     }
 }
