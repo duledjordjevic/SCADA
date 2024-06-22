@@ -6,6 +6,7 @@
   <xs:element name="SetOutput">
     <xs:complexType>
       <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="value" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
@@ -18,7 +19,7 @@
   <xs:element name="GetOutput">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="value" type="xs:double" />
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -27,9 +28,23 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ToggleScan">
+  <xs:element name="GetAllOutputs">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllOutputsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetAllOutputsResult" nillable="true" type="q1:ArrayOfOutputTag" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ToggleScan">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ToggleScanResponse">
@@ -40,7 +55,7 @@
   <xs:element name="AddTag">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="tag" nillable="true" type="q1:Tag" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="tag" nillable="true" type="q2:Tag" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -64,14 +79,14 @@
   <xs:element name="ListTags">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" minOccurs="0" name="type" type="q2:TagType" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" minOccurs="0" name="type" type="q3:TagType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ListTagsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListTagsResult" nillable="true" type="q3:ArrayOfstring" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListTagsResult" nillable="true" type="q4:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

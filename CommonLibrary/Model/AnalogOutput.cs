@@ -30,5 +30,10 @@ namespace CommonLibrary.Model
         {
             
         }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, LowLimit: {LowLimit}, HighLimit: {HighLimit}, Unit: {Unit}";
+        }
     }
 }

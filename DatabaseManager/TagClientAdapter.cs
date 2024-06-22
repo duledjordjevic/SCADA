@@ -28,5 +28,33 @@ namespace DatabaseManager
             var name = ConsoleReader.ReadString("tag name", "");
             TagClient.RemoveTag(name);
         }
+
+        public void ToggleScan()
+        {
+            var name = ConsoleReader.ReadString("tag name", "");
+            TagClient.ToggleScan(name);
+        }
+
+        public void SetOutput()
+        {
+            GetAllOutputs();
+            var name = ConsoleReader.ReadString("tag name", "");
+            var value = ConsoleReader.ReadDouble("value", "not double value");
+            TagClient.SetOutput(name, value);
+        }
+
+        public void GetOutput()
+        {
+            var name = ConsoleReader.ReadString("tag name", "");
+            TagClient.GetOutput(name);
+        }
+
+        public void GetAllOutputs()
+        {
+            foreach (var tag in TagClient.GetAllOutputs())
+            {
+                PrettyConsole.WriteLine($"{$"{tag.Name}:",-15} {tag.Value}");
+            }
+        }
     }
 }

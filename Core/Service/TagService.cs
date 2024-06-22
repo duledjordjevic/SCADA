@@ -28,14 +28,10 @@ namespace Core.Service
 
             if (TagProccessing.AddTag(tag))
             {
-                SendMessage($"New tag added successfuly.");
-                SendMessage($"{tag}");
+                SendMessage($"New tag added successfully.");
+                return;
             }
-        }
-
-        public void GetOutput(double value)
-        {
-            throw new NotImplementedException();
+            SendMessage($"Error: Tag name already exists!");
         }
 
         public List<string> ListTags(TagType type) 
@@ -50,7 +46,7 @@ namespace Core.Service
             var removed = TagProccessing.RemoveTag(name);
 
             if (removed) {
-                SendMessage("Tag removed successfuly.");
+                SendMessage("Tag removed successfully.");
             } else
             {
                 SendMessage("Error: Tag doesn`t exist!");
@@ -58,14 +54,26 @@ namespace Core.Service
         }
 
 
-        public void SetOutput(double value)
+        public void SetOutput(string tagName, double value)
         {
-            throw new NotImplementedException();
+            InitNotifier();
+            if(TagProccessing.SetOutput(tagName, value))
+            {
+                SendMessage("Successfully changed output.");
+                return;
+            }
+            SendMessage("Error: Tag doesn`t exist!");
         }
 
-        public void ToggleScan()
+        public void ToggleScan(string tagName)
         {
-            throw new NotImplementedException();
+            InitNotifier ();
+            if(TagProccessing.ToggleScan(tagName))
+            {
+                SendMessage("Successfully toggled tag.");
+                return;
+            }
+            SendMessage("Error: Tag doesn`t exist!");
         }
 
         public void InitNotifier()
@@ -75,6 +83,23 @@ namespace Core.Service
         public void SendMessage(string message)
         {
             notifier?.Invoke(message);
+        }
+
+        public void GetOutput(string tagName)
+        {
+            InitNotifier();
+            if (TagProccessing.GetOutput(tagName, out var value))
+            {
+                SendMessage($"{tagName}: {value}");
+                return;
+            }
+            SendMessage("Error: Tag doesn`t exist!");
+        }
+
+        public List<OutputTag> GetAllOutputs()
+        {
+            InitNotifier();
+            return TagProccessing.GetAllOutputs();
         }
     }
 }

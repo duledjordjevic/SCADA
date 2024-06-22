@@ -112,6 +112,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlarmProcessing.cs" />
+    <Compile Include="Migrations\202406220753019_InitialCreate4.cs" />
+    <Compile Include="Migrations\202406220753019_InitialCreate4.Designer.cs">
+      <DependentUpon>202406220753019_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Interface\ITrendingService.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.Designer.cs">
       <DependentUpon>202406182126049_InitialCreate.cs</DependentUpon>
@@ -153,6 +158,7 @@
     <Compile Include="Service\TagService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="TagProccessing.cs" />
+    <Compile Include="Service\TrendingService.cs" />
     <Compile Include="Util\Delegate.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202406201932358_InitialCreate3.resx">
       <DependentUpon>202406201932358_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406220753019_InitialCreate4.resx">
+      <DependentUpon>202406220753019_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

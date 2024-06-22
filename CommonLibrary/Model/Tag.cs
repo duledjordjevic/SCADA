@@ -31,5 +31,11 @@ namespace CommonLibrary.Model
         public Tag()
         {
         }
+
+        public override string ToString()
+        {
+            return $"Name: {Name}, Description: {Description}, Address: {Address}";
+        }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Core.Util;
+﻿using Core.Model;
+using Core.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ using System.Text;
 
 namespace Core.Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AlarmService" in both code and config file together.
     public class AlarmService : IBaseService, IAlarmService
     {
         static MessageArrivedDelegate notifier;
@@ -16,7 +16,6 @@ namespace Core.Service
         public void InitNotifier()
         {
             notifier = OperationContext.Current.GetCallbackChannel<ICallBack>().MessageArrived;
-
         }
 
         public void SendMessage(string message)
@@ -26,7 +25,14 @@ namespace Core.Service
 
         public void Subscribe()
         {
-            throw new NotImplementedException();
+            InitNotifier();
+            AlarmProcessing.OnAlarmTriggered += HandleAlarm;
+            SendMessage("Session initialized successfully.");
+        }
+
+        private void HandleAlarm(ActivatedAlarm alarm)
+        {
+            SendMessage($"{alarm}");
         }
     }
 }
