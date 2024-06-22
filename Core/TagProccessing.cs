@@ -3,6 +3,7 @@ using CommonLibrary.Model.Enum;
 using Core.Model;
 using Core.Repository;
 using Core.Service;
+using SD;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -334,8 +335,7 @@ namespace Core
                 case (DriverType.RTU):
                     return RealTimeDriverService.TryGetValue(inputTag.Address, out value);
                 case (DriverType.SD):
-                    //return SimulationDriverService.GetValue(inputTag.Address);
-                    return false;
+                    return SimulationDriver.TryGetValue(inputTag.Address, out value);
                 default:
                     return false;
             }

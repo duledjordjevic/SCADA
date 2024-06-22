@@ -187,6 +187,10 @@
       <Project>{18632785-d126-466f-8644-6a1023a72aad}</Project>
       <Name>CommonLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SD\SD.csproj">
+      <Project>{37d90ba9-1c49-4a85-97a8-0d87e9779563}</Project>
+      <Name>SD</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="alarmsLog.txt" />
