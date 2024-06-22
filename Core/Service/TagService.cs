@@ -55,12 +55,12 @@ namespace Core.Service
         public void SetOutput(string tagName, double value)
         {
             InitNotifier();
-            if (TagProccessing.SetOutput(tagName, value))
+            if (TagProccessing.SetOutput(tagName, value, out string message))
             {
-                SendMessage("Successfully changed output.");
+                SendMessage(message);
                 return;
             }
-            SendMessage("Error: Tag doesn`t exist!");
+            SendMessage(message);
         }
 
         public void ToggleScan(string tagName)

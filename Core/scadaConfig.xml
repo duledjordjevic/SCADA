@@ -67,10 +67,10 @@
   <DO name="Termometar" address="1" value="123123">
     <description>Meri temperaturu</description>
   </DO>
-  <DO name="789" address="789" value="1000">
+  <DO name="789" address="789" value="1">
     <description>789</description>
   </DO>
-  <DO name="df" address="vbnb" value="4">
+  <DO name="df" address="vbnb" value="0">
     <description>dfvc</description>
   </DO>
   <DO name="kaka" address="kaak" value="1">
