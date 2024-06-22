@@ -46,6 +46,13 @@
       <alarm priorityType="HIGH" priority="3" threshold="18" />
     </alarms>
   </AI>
+  <AI name="RADE" address="RADE" syncTime="2" isSyncTurned="true" lowLimit="40" highLimit="100" unit="liter">
+    <description>RADE</description>
+    <alarms>
+      <alarm priorityType="HIGH" priority="1" threshold="10" />
+      <alarm priorityType="LOW" priority="3" threshold="20" />
+    </alarms>
+  </AI>
   <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
     <description>gh</description>
   </AO>
