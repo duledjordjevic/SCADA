@@ -28,10 +28,10 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task GetOutputAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutputs", ReplyAction="http://tempuri.org/ITagService/GetAllOutputsResponse")]
-        void GetAllOutputs();
+        CommonLibrary.Model.OutputTag[] GetAllOutputs();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutputs", ReplyAction="http://tempuri.org/ITagService/GetAllOutputsResponse")]
-        System.Threading.Tasks.Task GetAllOutputsAsync();
+        System.Threading.Tasks.Task<CommonLibrary.Model.OutputTag[]> GetAllOutputsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ToggleScan", ReplyAction="http://tempuri.org/ITagService/ToggleScanResponse")]
         void ToggleScan(string tagName);
@@ -40,12 +40,12 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task ToggleScanAsync(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.OutputTag))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.AnalogOutput))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.DigitalOutput))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.InputTag))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.AnalogInput))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.DigitalInput))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.OutputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.AnalogOutput))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(CommonLibrary.Model.DigitalOutput))]
         void AddTag(CommonLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
@@ -115,11 +115,11 @@ namespace DatabaseManager.TagServiceReference {
             return base.Channel.GetOutputAsync(tagName);
         }
         
-        public void GetAllOutputs() {
-            base.Channel.GetAllOutputs();
+        public CommonLibrary.Model.OutputTag[] GetAllOutputs() {
+            return base.Channel.GetAllOutputs();
         }
         
-        public System.Threading.Tasks.Task GetAllOutputsAsync() {
+        public System.Threading.Tasks.Task<CommonLibrary.Model.OutputTag[]> GetAllOutputsAsync() {
             return base.Channel.GetAllOutputsAsync();
         }
         

@@ -368,6 +368,8 @@ namespace Core
                 if (tag == null) return false;
 
                 currentValues[tag.Name] = value;
+                tag.Value = value;
+
                 SaveTagConfiguration();
                 TagRepository.Add(tag, value);
             }
@@ -387,19 +389,12 @@ namespace Core
             return true;
         }
 
-        public static string GetAllOutputs()
+        public static List<OutputTag> GetAllOutputs()
         {
-            StringBuilder output = new StringBuilder();
-            lock (tagsLock)
-            {
-                var allTags = analogOutputs.Cast<OutputTag>()
-                            .Concat(digitalOutputs.Cast<OutputTag>());
-                foreach (var tag in allTags)
-                {
-                    output.AppendLine(tag.ToString());
-                }
-            }
-            return output.ToString();
+
+            return analogOutputs.Cast<OutputTag>()
+                            .Concat(digitalOutputs.Cast<OutputTag>()).ToList();
+
         }
     }
 

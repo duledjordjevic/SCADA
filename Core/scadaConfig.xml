@@ -37,7 +37,7 @@
   <DI name="Digital" address="digital" syncTime="1" isSyncTurned="true">
     <description>Digital input</description>
   </DI>
-  <DO name="Termometar" address="1" value="24">
+  <DO name="Termometar" address="1" value="123123">
     <description>Meri temperaturu</description>
   </DO>
   <DO name="789" address="789" value="30">

@@ -19,7 +19,7 @@ namespace Core.Service
         void GetOutput(string tagName);
 
         [OperationContract]
-        void GetAllOutputs();
+        List<OutputTag> GetAllOutputs();
 
         [OperationContract]
         void ToggleScan(string tagName);

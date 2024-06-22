@@ -88,6 +88,7 @@
     <None Include="Connected Services\UserServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\CommonLibrary.Model.OutputTag.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
