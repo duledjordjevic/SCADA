@@ -14,6 +14,8 @@ namespace CommonLibrary.Model
 
         [DataMember]
         public double Threshold { get; set; }
+
+        [DataMember]
         public string TagName { get; set; }
 
         public Alarm() { }

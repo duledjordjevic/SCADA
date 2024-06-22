@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading;
 using System.Xml;
@@ -356,12 +357,19 @@ namespace Core
         }
 
 
-        public static bool SetOutput(string tagName, double value)
+        public static bool SetOutput(string tagName, double value, out string message)
         {
             lock (tagsLock)
             {
+                message = "Error: Tag doesn't exist!";
                 var tag = FindOutputTag(tagName);
                 if (tag == null) return false;
+
+                if (tag is DigitalOutput && (value != 0 && value != 1))
+                {
+                    message = "Error: Must be 0 or 1!";
+                    return false;
+                }
 
                 currentValues[tag.Name] = value;
                 tag.Value = value;
@@ -369,6 +377,7 @@ namespace Core
                 SaveTagConfiguration();
                 TagRepository.Add(tag, value);
             }
+            message = "Tag value changed successfully.";
             return true;
         }
 

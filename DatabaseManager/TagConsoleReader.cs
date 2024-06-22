@@ -19,7 +19,10 @@ namespace DatabaseManager
             { "driver", "driver" },
             { "lowLimit", "lower limit" },
             { "highLimit", "upper limit" },
-            { "unit", "unit" }
+            { "unit", "unit" },
+            { "threshold", "threshold" },
+            { "priority", "priority" }
+
         };
 
         private static readonly Dictionary<string, string> errors = new Dictionary<string, string>
@@ -34,7 +37,9 @@ namespace DatabaseManager
             { "lowLimit", "Must be number" },
             { "highLimit", "Must be greater than low" },
             { "unit", "Must be filled" },
-            { "dvalue", "Must be 0 or 1" }
+            { "dvalue", "Must be 0 or 1" },
+            { "threshold", "Must be number" },
+            { "priority", "Must be 1 2 or 3" }
         };
 
         private static readonly List<string> drivers = new List<string>
@@ -43,10 +48,23 @@ namespace DatabaseManager
             "SD"
         };
 
+        private static readonly List<string> alarms = new List<string>
+        {
+            "LOW",
+            "HIGH"
+        };
+
         private static readonly string driverMenu = @"
                 +------- DRIVER -------+
                 |1) Real Time Unit     |
                 |2) Simulation Driver  |
+                +----------------------+
+            ";
+
+        private static readonly string alarmMenu = @"
+                +------- ALARM --------+
+                |1) Low limit          |
+                |2) High limit         |
                 +----------------------+
             ";
 
@@ -61,8 +79,9 @@ namespace DatabaseManager
             var high = ConsoleReader.ReadDouble(infos["highLimit"], errors["highLimit"]);
             var unit = ConsoleReader.ReadString(infos["unit"], errors["unit"]);
             var driver = ConsoleReader.ReadMenuSelection(driverMenu, drivers);
+            var alarms = ReadAlarms(name);
 
-            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, (DriverType)Enum.Parse(typeof(DriverType), driver, true), new List<Alarm>());
+            return new AnalogInput(name, desc, address, syncTime, isSyncOn, low, high, unit, (DriverType)Enum.Parse(typeof(DriverType), driver, true), alarms);
         }
 
         public static AnalogOutput ReadAO()
@@ -99,5 +118,34 @@ namespace DatabaseManager
 
             return new DigitalOutput(name, desc, address, value);
         }
+
+        public static Alarm ReadAlarm(string tagName)
+        {
+
+            var priorityType = ConsoleReader.ReadMenuSelection(alarmMenu, alarms);
+            var threshold = ConsoleReader.ReadPositiveInteger(infos["threshold"], errors["threshold"]);
+            var priority = ConsoleReader.ReadFromList(infos["priority"], errors["priority"], new List<int>() { 1, 2, 3});
+
+            var alarm = new Alarm((AlarmPriorityType)Enum.Parse(typeof(AlarmPriorityType), priorityType, true), priority, threshold, tagName);
+
+            return alarm;
+        }
+
+        public static List<Alarm> ReadAlarms(string tagName)
+        {
+            var alarms = new List<Alarm>();
+            while (true)
+            {
+                var input = ConsoleReader.ReadBool("Add new alarm");
+                if (input)
+                {
+                   alarms.Add(ReadAlarm(tagName));
+
+                } else { break; }
+            }
+
+            return alarms;
+        }
+
     }
 }
