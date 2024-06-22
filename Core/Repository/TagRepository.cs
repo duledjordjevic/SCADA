@@ -50,7 +50,7 @@ namespace Core.Repository
                 using (var db = new DatabaseContext())
                 {
                     return db.TagValues
-                             .Where(tv => tv.Type == "AITag")
+                             .Where(tv => tv.Type == "AnalogInput")
                              .GroupBy(tv => tv.TagName)
                              .Select(g => g.OrderByDescending(tv => tv.Timestamp).FirstOrDefault())
                              .OrderBy(tv => tv.Timestamp)
@@ -66,7 +66,7 @@ namespace Core.Repository
                 using (var db = new DatabaseContext())
                 {
                     return db.TagValues
-                             .Where(tv => tv.Type == "DITag")
+                             .Where(tv => tv.Type == "DigitalInput")
                              .GroupBy(tv => tv.TagName)
                              .Select(g => g.OrderByDescending(tv => tv.Timestamp).FirstOrDefault())
                              .OrderBy(tv => tv.Timestamp)

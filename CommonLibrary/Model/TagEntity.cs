@@ -25,7 +25,7 @@ namespace CommonLibrary.Model
 
         public override string ToString()
         {
-            return $"{$"[{TagName}]",-12} {$"{TagName}:",-17} {Math.Round(Value, 3),-10} [{Timestamp}]";
+            return $"{$"[{Type}]",-12} {$"{TagName}:",-17} {Math.Round(Value, 3),-10} [{Timestamp}]";
         }
 
     }
