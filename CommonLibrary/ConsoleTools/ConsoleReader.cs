@@ -58,6 +58,24 @@ namespace CommonLibrary.ConsoleTools
             }
         }
 
+        public static int ReadZeroOrOne(string info, string error)
+        {
+            while (true)
+            {
+                PrettyConsole.Write(InfoString(info));
+                string input = Console.ReadLine();
+
+                if (input == "0" || input == "1")
+                {
+                    return int.Parse(input);
+                }
+                else
+                {
+                    PrettyConsole.WriteLine(ErrorString(error));
+                }
+            }
+        }
+
         public static int ReadPositiveInteger(string info, string error)
         {
             while (true)

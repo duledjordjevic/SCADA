@@ -29,8 +29,9 @@ namespace Core.Service
             if (TagProccessing.AddTag(tag))
             {
                 SendMessage($"New tag added successfully.");
-                SendMessage($"{tag}");
+                return;
             }
+            SendMessage($"Error: Tag name already exists!");
         }
 
         public List<string> ListTags(TagType type) 
@@ -45,7 +46,7 @@ namespace Core.Service
             var removed = TagProccessing.RemoveTag(name);
 
             if (removed) {
-                SendMessage("Tag removed successfuly.");
+                SendMessage("Tag removed successfully.");
             } else
             {
                 SendMessage("Error: Tag doesn`t exist!");

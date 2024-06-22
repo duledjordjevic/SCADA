@@ -27,16 +27,17 @@ namespace DatabaseManager
 
         private static readonly Dictionary<string, string> errors = new Dictionary<string, string>
         {
-            { "name", "" },
-            { "desc", "" },
-            { "address", "" },
-            { "syncTime", "" },
-            { "value", "value" },
-            { "isSyncOn", "" },
-            { "driver", "" },
-            { "lowLimit", "" },
-            { "highLimit", "" },
-            { "unit", "" }
+            { "name", "Must be filled" },
+            { "desc", "Must be filled" },
+            { "address", "Must be filled" },
+            { "syncTime", "Must be positive number" },
+            { "value", "Must be number" },
+            { "isSyncOn", "Must be (y/n)" },
+            { "driver", "Must be selected" },
+            { "lowLimit", "Must be number" },
+            { "highLimit", "Must be greater than low" },
+            { "unit", "Must be filled" },
+            { "dvalue", "Must be 0 or 1" }
         };
 
         private static readonly List<string> drivers = new List<string>
@@ -97,7 +98,7 @@ namespace DatabaseManager
             var name = ConsoleReader.ReadString(infos["name"], errors["name"]);
             var desc = ConsoleReader.ReadString(infos["desc"], errors["desc"]);
             var address = ConsoleReader.ReadString(infos["address"], errors["address"]);
-            var value = ConsoleReader.ReadPositiveInteger(infos["value"], errors["value"]);
+            var value = ConsoleReader.ReadZeroOrOne(infos["value"], errors["dvalue"]);
 
             return new DigitalOutput(name, desc, address,value);
         }

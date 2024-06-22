@@ -116,7 +116,6 @@ namespace DatabaseManager
 
                     case "6":
                         var tag = TagMenu();
-                        PrettyConsole.WriteLine($"{tag.Name}");
                         if (tag == null) { continue; }
 
                         tagClientAdapter.AddTag(tag);
