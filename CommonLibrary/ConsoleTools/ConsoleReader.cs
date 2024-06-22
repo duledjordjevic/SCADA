@@ -73,6 +73,24 @@ namespace CommonLibrary.ConsoleTools
             }
         }
 
+        public static int ReadFromList(string info, string error, List<int> validNumbers)
+        {
+            while (true)
+            {
+                PrettyConsole.Write(InfoString(info));
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int number) && validNumbers.Contains(number))
+                {
+                    return number;
+                }
+                else
+                {
+                    PrettyConsole.WriteLine(ErrorString(error));
+                }
+            }
+        }
+
         public static int ReadPositiveInteger(string info, string error)
         {
             while (true)

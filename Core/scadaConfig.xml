@@ -26,6 +26,26 @@
   <AI name="alarmantan" address="nije" syncTime="3" isSyncTurned="true" lowLimit="-50" highLimit="50" unit="liter">
     <description>asdas</description>
   </AI>
+  <AI name="Novi Test" address="alarm" syncTime="4" isSyncTurned="true" lowLimit="-20" highLimit="20" unit="liter">
+    <description>asda</description>
+    <alarms>
+      <alarm priorityType="LOW" priority="0" threshold="0" />
+    </alarms>
+  </AI>
+  <AI name="Opet Porba" address="gari" syncTime="3" isSyncTurned="true" lowLimit="-20" highLimit="20" unit="C">
+    <description>sda</description>
+    <alarms>
+      <alarm priorityType="LOW" priority="1" threshold="7" />
+      <alarm priorityType="HIGH" priority="2" threshold="9" />
+    </alarms>
+  </AI>
+  <AI name="Dule DJordjevic" address="VRANJE" syncTime="2" isSyncTurned="true" lowLimit="-30" highLimit="30" unit="C">
+    <description>dulee</description>
+    <alarms>
+      <alarm priorityType="LOW" priority="1" threshold="10" />
+      <alarm priorityType="HIGH" priority="3" threshold="18" />
+    </alarms>
+  </AI>
   <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
     <description>gh</description>
   </AO>
@@ -47,7 +67,7 @@
   <DO name="Termometar" address="1" value="123123">
     <description>Meri temperaturu</description>
   </DO>
-  <DO name="789" address="789" value="30">
+  <DO name="789" address="789" value="1000">
     <description>789</description>
   </DO>
   <DO name="df" address="vbnb" value="4">
