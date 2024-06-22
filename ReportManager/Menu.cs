@@ -33,7 +33,7 @@ namespace ReportManager
 
         public Menu(ReportServiceClient reportClient)
         {
-            reportClientAdapter = new ReportClientAdapter(reportClient);
+            reportClientAdapter = new ReportClientAdapter(reportClient, title);
         }
 
         public void StartMenu()
@@ -78,7 +78,8 @@ namespace ReportManager
                         Thread.Sleep(1000);
                         break;
                 }
-
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }

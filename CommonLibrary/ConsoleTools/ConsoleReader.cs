@@ -180,9 +180,9 @@ namespace CommonLibrary.ConsoleTools
         {
             while (true)
             {
-                int month = ReadPositiveInteger($"{info} month:", error);
-                int day = ReadPositiveInteger($"{info} day:", error);
-                int hour = ReadPositiveInteger($"{info} hour:", error);
+                int month = ReadPositiveInteger($"{info} month", error);
+                int day = ReadPositiveInteger($"{info} day", error);
+                int hour = ReadPositiveInteger($"{info} hour", error);
 
                 try
                 {
