@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Security.Claims;
-using System.ServiceModel;
-using System.Text;
-using CommonLibrary.Model;
+﻿using CommonLibrary.Model;
 using Core.Service.Interface;
 using Core.Util;
+using System;
+using System.ServiceModel;
 
 namespace Core.Service
 {
-    public class TrendingService : IBaseService , ITrendingService
+    public class TrendingService : IBaseService, ITrendingService
     {
         static MessageArrivedDelegate notifier;
         public void InitNotifier()
@@ -33,11 +28,11 @@ namespace Core.Service
 
         private void HandleTagValueChanged(InputTag tag, double value)
         {
-            if (tag is AnalogInput analog) 
+            if (tag is AnalogInput analog)
             {
                 SendMessage($"{$"{analog.Name}:",-15} {Math.Round(value, 3),-10} {analog.Unit,-10} [{DateTime.Now}]");
             }
-            else if (tag is DigitalInput digital) 
+            else if (tag is DigitalInput digital)
             {
                 SendMessage($"{$"{digital.Name}:",-15} {value,-21} [{DateTime.Now}]");
             }

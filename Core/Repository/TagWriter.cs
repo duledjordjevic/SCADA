@@ -1,10 +1,7 @@
-﻿using System;
+﻿using CommonLibrary.Model;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using CommonLibrary.Model;
 
 namespace Core.Repository
 {
@@ -16,13 +13,13 @@ namespace Core.Repository
             {
                 var aiElement = new XElement("AI",
                     new XAttribute("name", tag.Name ?? "Unknown"),
-                    new XAttribute("address", tag.Address ?? "0"), 
+                    new XAttribute("address", tag.Address ?? "0"),
                     new XAttribute("syncTime", tag.SyncTime),
                     new XAttribute("isSyncTurned", tag.IsSyncTurned.ToString().ToLower()),
                     // new XAttribute("driver", tag.Driver ?? "Unknown"), // Ako imate atribut driver
                     new XAttribute("lowLimit", tag.LowLimit),
                     new XAttribute("highLimit", tag.HighLimit),
-                    new XAttribute("unit", tag.Unit ?? "unknown") 
+                    new XAttribute("unit", tag.Unit ?? "unknown")
                 );
 
                 if (!string.IsNullOrWhiteSpace(tag.Description))
@@ -54,12 +51,12 @@ namespace Core.Repository
             return analogOutputs.Select(output =>
             {
                 var aoElement = new XElement("AO",
-                    new XAttribute("name", output.Name ?? "Unknown"), 
-                    new XAttribute("address", output.Address ?? "0"), 
+                    new XAttribute("name", output.Name ?? "Unknown"),
+                    new XAttribute("address", output.Address ?? "0"),
                     new XAttribute("value", output.Value),
                     new XAttribute("lowLimit", output.LowLimit),
                     new XAttribute("highLimit", output.HighLimit),
-                    new XAttribute("unit", output.Unit ?? "unknown") 
+                    new XAttribute("unit", output.Unit ?? "unknown")
                 );
 
                 if (!string.IsNullOrWhiteSpace(output.Description))
@@ -76,8 +73,8 @@ namespace Core.Repository
             return digitalInputs.Select(input =>
             {
                 var diElement = new XElement("DI",
-                    new XAttribute("name", input.Name ?? "Unknown"), 
-                    new XAttribute("address", input.Address ?? "0"), 
+                    new XAttribute("name", input.Name ?? "Unknown"),
+                    new XAttribute("address", input.Address ?? "0"),
                     new XAttribute("syncTime", input.SyncTime),
                     new XAttribute("isSyncTurned", input.IsSyncTurned.ToString().ToLower())
                 );
@@ -96,8 +93,8 @@ namespace Core.Repository
             return digitalOutputs.Select(output =>
             {
                 var doElement = new XElement("DO",
-                    new XAttribute("name", output.Name ?? "Unknown"), 
-                    new XAttribute("address", output.Address ?? "0"), 
+                    new XAttribute("name", output.Name ?? "Unknown"),
+                    new XAttribute("address", output.Address ?? "0"),
                     new XAttribute("value", output.Value)
                 );
 

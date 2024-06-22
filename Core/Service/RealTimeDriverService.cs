@@ -1,13 +1,7 @@
 ﻿using Core.Service.Interface;
-using CommonLibrary.Model;
 using Core.Util;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
-using System.Xml.Linq;
 
 namespace Core.Service
 {
@@ -22,13 +16,14 @@ namespace Core.Service
 
         public bool RegisterRTU(string address)
         {
-            if (!RTUs.ContainsKey(address)) 
+            if (!RTUs.ContainsKey(address))
             {
                 RTUs.Add(address, 0);
                 InitNotifier(address);
                 SendMessage(address, $"Registration successful: {address}");
                 return true;
-            } else
+            }
+            else
             {
                 InitNotifier();
                 SendMessage($"Registration failed!");
@@ -74,7 +69,7 @@ namespace Core.Service
 
         public static bool TryGetValue(string address, out double value)
         {
-            lock(RTULock)
+            lock (RTULock)
             {
                 if (RTUs.ContainsKey(address))
                 {

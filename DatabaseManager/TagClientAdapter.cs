@@ -1,11 +1,6 @@
-﻿using DatabaseManager.TagServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommonLibrary.ConsoleTools;
 using CommonLibrary.Model;
-using CommonLibrary.ConsoleTools;
+using DatabaseManager.TagServiceReference;
 
 namespace DatabaseManager
 {

@@ -1,12 +1,8 @@
 ﻿using CommonLibrary.Model;
 using CommonLibrary.Model.Enum;
 using Core.Util;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 
 namespace Core.Service
 {
@@ -15,11 +11,11 @@ namespace Core.Service
 
         static MessageArrivedDelegate notifier;
 
-        public TagService() 
+        public TagService()
         {
             TagProccessing.LoadTags();
             TagProccessing.StartThreads();
-            
+
         }
 
         public void AddTag(Tag tag)
@@ -34,7 +30,7 @@ namespace Core.Service
             SendMessage($"Error: Tag name already exists!");
         }
 
-        public List<string> ListTags(TagType type) 
+        public List<string> ListTags(TagType type)
         {
             return TagProccessing.GetAllTagNames(type);
         }
@@ -42,12 +38,14 @@ namespace Core.Service
         public void RemoveTag(string name)
         {
             InitNotifier();
-            
+
             var removed = TagProccessing.RemoveTag(name);
 
-            if (removed) {
+            if (removed)
+            {
                 SendMessage("Tag removed successfully.");
-            } else
+            }
+            else
             {
                 SendMessage("Error: Tag doesn`t exist!");
             }
@@ -57,7 +55,7 @@ namespace Core.Service
         public void SetOutput(string tagName, double value)
         {
             InitNotifier();
-            if(TagProccessing.SetOutput(tagName, value))
+            if (TagProccessing.SetOutput(tagName, value))
             {
                 SendMessage("Successfully changed output.");
                 return;
@@ -67,8 +65,8 @@ namespace Core.Service
 
         public void ToggleScan(string tagName)
         {
-            InitNotifier ();
-            if(TagProccessing.ToggleScan(tagName))
+            InitNotifier();
+            if (TagProccessing.ToggleScan(tagName))
             {
                 SendMessage("Successfully toggled tag.");
                 return;

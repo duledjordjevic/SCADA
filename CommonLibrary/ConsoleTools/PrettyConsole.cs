@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Security.Permissions;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CommonLibrary.ConsoleTools
 {
@@ -36,14 +30,15 @@ namespace CommonLibrary.ConsoleTools
         public static void WriteLine(string text, int priority)
         {
             Console.ForegroundColor = ConsoleColor.Black;
-            switch (priority) {
+            switch (priority)
+            {
                 case 1:
                     Console.BackgroundColor = ConsoleColor.Red;
                     break;
                 case 2:
                     Console.BackgroundColor = ConsoleColor.Yellow;
                     break;
-                case 3: 
+                case 3:
                     Console.BackgroundColor = ConsoleColor.Green;
                     break;
                 default:

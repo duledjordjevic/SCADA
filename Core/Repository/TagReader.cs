@@ -1,10 +1,6 @@
-﻿using CommonLibrary.Model.Enum;
-using CommonLibrary.Model;
-using System;
+﻿using CommonLibrary.Model;
+using CommonLibrary.Model.Enum;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Core.Repository
@@ -28,7 +24,7 @@ namespace Core.Repository
                     HighLimit = double.Parse(tag.Attribute("highLimit")?.Value ?? "0"),
                     Unit = tag.Attribute("unit")?.Value,
                     Description = tag.Element("description")?.Value,
-                    Alarms = new List<Alarm>(), 
+                    Alarms = new List<Alarm>(),
                 };
 
                 foreach (XElement alarm in tag.Descendants("alarm"))

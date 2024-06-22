@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary.ConsoleTools;
-using System.Data;
-using System.ServiceModel;
+﻿using CommonLibrary.ConsoleTools;
 using RTU.ServiceReference;
+using System;
+using System.ServiceModel;
 
 
 namespace RTU

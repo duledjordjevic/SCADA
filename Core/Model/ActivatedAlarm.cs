@@ -1,12 +1,7 @@
 ﻿using CommonLibrary.Model;
-using Google.Protobuf.WellKnownTypes;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Model
 {
@@ -36,7 +31,7 @@ namespace Core.Model
 
         public override string ToString()
         {
-            return $"{$"{Alarm.TagName}:",-15} {Math.Round(Value, 3), -10} {Alarm.PriorityType, -4} [{TriggeredOn}]";
+            return $"{$"{Alarm.TagName}:",-15} {Math.Round(Value, 3),-10} {Alarm.PriorityType,-4} [{TriggeredOn}]";
         }
     }
 }

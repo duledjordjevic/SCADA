@@ -1,11 +1,6 @@
 ﻿using CommonLibrary.Model;
 using Core.Model;
-using Google.Protobuf.WellKnownTypes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Repository
 {
@@ -19,7 +14,8 @@ namespace Core.Repository
             {
                 using (var db = new DatabaseContext())
                 {
-                    db.TagValues.Add( new TagEntity {
+                    db.TagValues.Add(new TagEntity
+                    {
                         Type = tag.GetType().Name,
                         TagName = tag.Name,
                         Value = value,

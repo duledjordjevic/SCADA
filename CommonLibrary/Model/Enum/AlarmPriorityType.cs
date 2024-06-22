@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CommonLibrary.Model.Enum
+﻿namespace CommonLibrary.Model.Enum
 {
     public enum AlarmPriorityType
-    { 
+    {
         LOW, HIGH
     }
 }
