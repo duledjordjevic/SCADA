@@ -30,12 +30,12 @@ namespace Core.Service
                     {
                         token = AuthProvider.GenerateToken(username);
                         authenticatedUsers.Add(token, user);
-                        SendMessage($"Login succesfull!");
+                        SendMessage($"Login successful!");
                         return token;
                     }
                 }
             }
-            SendMessage($"Login failed!");
+            SendMessage($"Error: Login failed!");
             return token;
         }
 
@@ -59,7 +59,7 @@ namespace Core.Service
                 }
                 catch (Exception e)
                 {
-                    SendMessage($"Registration failed!");
+                    SendMessage($"Error: Registration failed!");
                     return false;
                 }
             }

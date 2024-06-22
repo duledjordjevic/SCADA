@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import namespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" />
-  <xs:complexType name="Tag">
+  <xs:complexType name="ArrayOfOutputTag">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OutputTag" nillable="true" type="tns:OutputTag" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="Tag" nillable="true" type="tns:Tag" />
+  <xs:element name="ArrayOfOutputTag" nillable="true" type="tns:ArrayOfOutputTag" />
   <xs:complexType name="OutputTag">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:Tag">
@@ -19,6 +17,14 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="OutputTag" nillable="true" type="tns:OutputTag" />
+  <xs:complexType name="Tag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Tag" nillable="true" type="tns:Tag" />
   <xs:complexType name="AnalogOutput">
     <xs:complexContent mixed="false">
       <xs:extension base="tns:OutputTag">

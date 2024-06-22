@@ -11,7 +11,6 @@ using Core.Util;
 
 namespace Core.Service
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "TrendingService" in both code and config file together.
     public class TrendingService : IBaseService , ITrendingService
     {
         static MessageArrivedDelegate notifier;
@@ -34,7 +33,14 @@ namespace Core.Service
 
         private void HandleTagValueChanged(InputTag tag, double value)
         {
-            SendMessage($"{tag} - Value: {value}");
+            if (tag is AnalogInput analog) 
+            {
+                SendMessage($"{$"{analog.Name}:",-15} {Math.Round(value, 3),-10} {analog.Unit,-10} [{DateTime.Now}]");
+            }
+            else if (tag is DigitalInput digital) 
+            {
+                SendMessage($"{$"{digital.Name}:",-15} {value,-21} [{DateTime.Now}]");
+            }
         }
     }
 }

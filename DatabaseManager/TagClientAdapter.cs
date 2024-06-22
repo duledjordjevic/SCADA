@@ -37,7 +37,7 @@ namespace DatabaseManager
 
         public void SetOutput()
         {
-            TagClient.GetAllOutputs();
+            GetAllOutputs();
             var name = ConsoleReader.ReadString("tag name", "");
             var value = ConsoleReader.ReadDouble("value", "not double value");
             TagClient.SetOutput(name, value);
@@ -51,7 +51,10 @@ namespace DatabaseManager
 
         public void GetAllOutputs()
         {
-            TagClient.GetAllOutputs();
+            foreach (var tag in TagClient.GetAllOutputs())
+            {
+                PrettyConsole.WriteLine($"{$"{tag.Name}:",-15} {tag.Value}");
+            }
         }
     }
 }

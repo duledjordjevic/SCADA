@@ -16,7 +16,7 @@ namespace Core
 {
     public class AlarmProcessing
     {
-        public delegate void TriggeredAlarmDelegate(ActivatedAlarm alarm, double value);
+        public delegate void TriggeredAlarmDelegate(ActivatedAlarm alarm);
         public static event TriggeredAlarmDelegate OnAlarmTriggered;
 
         static List<ActivatedAlarm> activatedAlarms = new List<ActivatedAlarm>();
@@ -25,26 +25,26 @@ namespace Core
 
         private static readonly int DELAY = 10;
 
-        public static void TryTriggerAlarms(AnalogInput analogTag, double newValue)
+        public static void TryTriggerAlarms(AnalogInput tag, double newValue)
         {
-            foreach (Alarm alarm in analogTag.Alarms)
+            foreach (Alarm alarm in tag.Alarms)
             {
                 bool shouldTrigger =
-                (alarm.PriorityType == AlarmPriorityType.HIGH && newValue > analogTag.HighLimit - alarm.Threshold) ||
-                (alarm.PriorityType == AlarmPriorityType.LOW && newValue < analogTag.LowLimit + alarm.Threshold);
+                (alarm.PriorityType == AlarmPriorityType.HIGH && newValue > tag.HighLimit - alarm.Threshold) ||
+                (alarm.PriorityType == AlarmPriorityType.LOW && newValue < tag.LowLimit + alarm.Threshold);
 
                 if (shouldTrigger)
                 {
-                    TriggerAlarm(new ActivatedAlarm(alarm), newValue);
+                    TriggerAlarm(new ActivatedAlarm(alarm, newValue));
                 }
             }
         }
 
-        public static void TriggerAlarm(ActivatedAlarm newAlarm, double newValue)
+        public static void TriggerAlarm(ActivatedAlarm newAlarm)
         {
             if (HasActiveAlarm(newAlarm)) { return; }
 
-            OnAlarmTriggered?.Invoke(newAlarm, newValue);
+            OnAlarmTriggered?.Invoke(newAlarm);
 
             lock (alarmsLock)
             {
