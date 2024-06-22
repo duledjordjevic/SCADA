@@ -116,6 +116,8 @@
     <Compile Include="Migrations\202406220753019_InitialCreate4.Designer.cs">
       <DependentUpon>202406220753019_InitialCreate4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\Interface\IPriorityCallback.cs" />
+    <Compile Include="Service\Interface\IPriorityService.cs" />
     <Compile Include="Service\Interface\ITrendingService.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.cs" />
     <Compile Include="Migrations\202406182126049_InitialCreate.Designer.cs">

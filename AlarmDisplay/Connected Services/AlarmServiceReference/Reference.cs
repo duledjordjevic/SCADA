@@ -26,7 +26,7 @@ namespace AlarmDisplay.AlarmServiceReference {
     public interface IAlarmServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IAlarmService/MessageArrived")]
-        void MessageArrived(string message);
+        void MessageArrived(string message, int priority);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

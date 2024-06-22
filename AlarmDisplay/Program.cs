@@ -13,9 +13,9 @@ namespace AlarmDisplay
     {
         public class AlarmCallback : IAlarmServiceCallback
         {
-            public void MessageArrived(string message)
+            public void MessageArrived(string message, int priority)
             {
-                PrettyConsole.WriteLine(message);
+                PrettyConsole.WriteLine(message, priority);
             }
         }
 
