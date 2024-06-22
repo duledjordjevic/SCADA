@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Core.Model
+namespace CommonLibrary.Model
 {
     [DataContract]
     public class TagEntity
@@ -25,7 +25,7 @@ namespace Core.Model
 
         public override string ToString()
         {
-            return $"TagEntity [Id={Id}, Type={Type}, TagName={TagName}, Value={Value}, Timestamp={Timestamp:yyyy-MM-dd HH:mm:ss}]";
+            return $"{$"[{Type}]",-12} {$"{TagName}:",-17} {Math.Round(Value, 3),-10} [{Timestamp}]";
         }
 
     }

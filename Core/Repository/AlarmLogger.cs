@@ -1,5 +1,6 @@
 ﻿using Core.Model;
 using System.IO;
+using CommonLibrary.Model;
 
 namespace Core.Repository
 {

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace Core.Model
+namespace CommonLibrary.Model
 {
     [DataContract]
     public class ActivatedAlarm
@@ -31,7 +31,7 @@ namespace Core.Model
 
         public override string ToString()
         {
-            return $"{$"{Alarm.TagName}:",-15} {Math.Round(Value, 3),-10} {Alarm.PriorityType,-4} [{TriggeredOn}]";
+            return $"{$"{Alarm.TagName}:",-17} {Math.Round(Value, 3),-10} {Alarm.PriorityType,-4} [{TriggeredOn}]";
         }
     }
 }
