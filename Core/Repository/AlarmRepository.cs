@@ -37,5 +37,36 @@ namespace Core.Repository
                 }
             }
         }
+
+        public static List<ActivatedAlarm> GetAlarmsByPeriod(DateTime startTime, DateTime endTime)
+        {
+            lock (dbLock)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    return db.ActivatedAlarms
+                             .Where(a => a.TriggeredOn >= startTime && a.TriggeredOn <= endTime)
+                             .OrderBy(a => a.Alarm.Priority)
+                             .ThenBy(a => a.TriggeredOn)
+                             .ToList();
+                }
+            }
+        }
+
+        public static List<ActivatedAlarm> GetAlarmsByPriority(int priority)
+        {
+            lock (dbLock)
+            {
+                using (var db = new DatabaseContext())
+                {
+                    return db.ActivatedAlarms
+                             .Where(a => a.Alarm.Priority == priority)
+                             .OrderBy(a => a.TriggeredOn)
+                             .ToList();
+                }
+            }
+        }
+
+
     }
 }

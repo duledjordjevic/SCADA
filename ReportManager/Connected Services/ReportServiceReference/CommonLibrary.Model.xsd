@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" />
+  <xs:complexType name="Alarm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Priority" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CommonLibrary.Model.Enum" minOccurs="0" name="PriorityType" type="q1:AlarmPriorityType" />
+      <xs:element minOccurs="0" name="Threshold" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Alarm" nillable="true" type="tns:Alarm" />
+</xs:schema>
