@@ -154,7 +154,9 @@
     <Compile Include="Service\Interface\IUserService.cs" />
     <Compile Include="Service\Interface\ITagService.cs" />
     <Compile Include="Service\Interface\IRealTimeDriverService.cs" />
+    <Compile Include="Service\Interface\IReportService.cs" />
     <Compile Include="Service\RealTimeDriverService.cs" />
+    <Compile Include="Service\ReportService.cs" />
     <Compile Include="Service\TagService.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="TagProccessing.cs" />
