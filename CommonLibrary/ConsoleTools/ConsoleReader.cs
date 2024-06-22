@@ -175,5 +175,55 @@ namespace CommonLibrary.ConsoleTools
                 }
             }
         }
+
+        public static DateTime ReadDateTime(string info, string error)
+        {
+            while (true)
+            {
+                int month = ReadPositiveInteger($"{info} month:", error);
+                int day = ReadPositiveInteger($"{info} day:", error);
+                int hour = ReadPositiveInteger($"{info} hour:", error);
+
+                try
+                {
+                    DateTime date = new DateTime(2024, month, day, hour, 0, 0);
+                    return date;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    PrettyConsole.WriteLine(ErrorString(error));
+                }
+            }
+        }
+
+        public static void ReadStartAndEndDateTimes(out DateTime startDate, out DateTime endDate)
+        {
+            while (true)
+            {
+                startDate = ReadDateTime("start", "Must be valid date");
+
+                if (startDate >= DateTime.Now)
+                {
+                    PrettyConsole.WriteLine(ErrorString("Must be before now"));
+                    continue;
+                }
+
+                endDate = ReadDateTime("end", "Must be valid date");
+
+                if (endDate >= DateTime.Now)
+                {
+                    PrettyConsole.WriteLine(ErrorString("Can`t be after now"));
+                    continue;
+                }
+
+                if (endDate <= startDate)
+                {
+                    PrettyConsole.WriteLine(ErrorString("Must be after start date"));
+                    continue;
+                }
+
+                break;
+            }
+        }
     }
 }
