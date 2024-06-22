@@ -4,7 +4,14 @@
     <description>Pokrece alarm</description>
     <alarms>
       <alarm priorityType="LOW" priority="1" threshold="20" />
-      <alarm priorityType="LOW" priority="1" threshold="20" />
+      <alarm priorityType="HIGH" priority="2" threshold="20" />
+    </alarms>
+  </AI>
+  <AI name="Alarmantan 2" address="alarm" syncTime="2" isSyncTurned="true" lowLimit="-50" highLimit="50" unit="liter">
+    <description>Pokrece alarm</description>
+    <alarms>
+      <alarm priorityType="LOW" priority="3" threshold="20" />
+      <alarm priorityType="HIGH" priority="2" threshold="20" />
     </alarms>
   </AI>
   <AI name="Pumpa" address="RTU" syncTime="5" isSyncTurned="true" lowLimit="30" highLimit="60" unit="l">

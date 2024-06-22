@@ -1,20 +1,16 @@
 ﻿using CommonLibrary.Model;
 using CommonLibrary.Model.Enum;
+using Core.Model;
+using Core.Repository;
+using Core.Service;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Core.Repository;
-using System.IO;
 using System.Threading;
-using Core.Model;
-using Core.Service;
 using System.Xml;
-using System.Data.Entity;
-using Google.Protobuf.WellKnownTypes;
-using System.ServiceModel.Configuration;
+using System.Xml.Linq;
 
 namespace Core
 {

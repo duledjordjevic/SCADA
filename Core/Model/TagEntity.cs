@@ -1,23 +1,18 @@
-﻿using CommonLibrary.Model.Enum;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Model
 {
     [DataContract]
-    public  class TagEntity
+    public class TagEntity
     {
         [Key]
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        public string Type { get; set; } 
+        public string Type { get; set; }
 
         [DataMember]
         public string TagName { get; set; }

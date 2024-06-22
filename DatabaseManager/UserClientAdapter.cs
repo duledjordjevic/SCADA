@@ -1,10 +1,5 @@
-﻿using DatabaseManager.UserServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary.ConsoleTools;
+﻿using CommonLibrary.ConsoleTools;
+using DatabaseManager.UserServiceReference;
 
 namespace DatabaseManager
 {

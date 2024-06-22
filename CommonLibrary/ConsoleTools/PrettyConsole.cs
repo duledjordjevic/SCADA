@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CommonLibrary.ConsoleTools
 {
@@ -29,6 +25,29 @@ namespace CommonLibrary.ConsoleTools
             ChangeColorBasedOnContent(text);
             Console.WriteLine($"         {text}");
             Console.ResetColor();
+        }
+
+        public static void WriteLine(string text, int priority)
+        {
+            Console.ForegroundColor = ConsoleColor.Black;
+            switch (priority)
+            {
+                case 1:
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    break;
+                case 2:
+                    Console.BackgroundColor = ConsoleColor.Yellow;
+                    break;
+                case 3:
+                    Console.BackgroundColor = ConsoleColor.Green;
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+            }
+            Console.WriteLine($"         {text}");
+            Console.ResetColor();
+
         }
 
         public static void WriteTitle(string text)

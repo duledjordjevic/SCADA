@@ -1,18 +1,15 @@
-﻿using CommonLibrary.Model;
+﻿using CommonLibrary.ConsoleTools;
+using CommonLibrary.Model;
+using CommonLibrary.Model.Enum;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary.ConsoleTools;
-using CommonLibrary.Model.Enum;
 
 namespace DatabaseManager
 {
     public class TagConsoleReader
     {
-        private static readonly Dictionary<string, string> infos = new Dictionary<string, string> 
-        { 
+        private static readonly Dictionary<string, string> infos = new Dictionary<string, string>
+        {
             { "name", "tag name" },
             { "desc", "description" },
             { "address", "address" },
@@ -100,7 +97,7 @@ namespace DatabaseManager
             var address = ConsoleReader.ReadString(infos["address"], errors["address"]);
             var value = ConsoleReader.ReadZeroOrOne(infos["value"], errors["dvalue"]);
 
-            return new DigitalOutput(name, desc, address,value);
+            return new DigitalOutput(name, desc, address, value);
         }
     }
 }

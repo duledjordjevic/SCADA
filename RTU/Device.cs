@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RTU
+﻿namespace RTU
 {
     public class Device
     {
@@ -15,7 +9,7 @@ namespace RTU
 
         public Device()
         {
-            
+
         }
     }
 }

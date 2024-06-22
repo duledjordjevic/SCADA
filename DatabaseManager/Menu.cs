@@ -1,15 +1,9 @@
-﻿using DatabaseManager.UserServiceReference;
-using DatabaseManager.TagServiceReference;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using CommonLibrary.ConsoleTools;
 using CommonLibrary.Model;
-using CommonLibrary.ConsoleTools;
+using DatabaseManager.TagServiceReference;
+using DatabaseManager.UserServiceReference;
+using System;
+using System.Threading;
 
 namespace DatabaseManager
 {
@@ -60,7 +54,7 @@ namespace DatabaseManager
         public void StartMenu()
         {
             token = "";
-            while (token.Equals("")) 
+            while (token.Equals(""))
             {
                 PrettyConsole.WriteTitle(startMenu);
                 PrettyConsole.Write("Enter choice: ");

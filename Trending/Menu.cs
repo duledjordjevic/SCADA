@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommonLibrary.ConsoleTools;
-using Trending.TrendingReference;
+﻿using CommonLibrary.ConsoleTools;
 namespace Trending
 {
     public class Menu

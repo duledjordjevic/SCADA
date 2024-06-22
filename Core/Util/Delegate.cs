@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Util
+﻿namespace Core.Util
 {
     public delegate void MessageArrivedDelegate(string message);
+    public delegate void PriorityMessageArrivedDelegate(string message, int priority);
 }

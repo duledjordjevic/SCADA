@@ -1,11 +1,6 @@
 ﻿using AlarmDisplay.AlarmServiceReference;
 using CommonLibrary.ConsoleTools;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AlarmDisplay
 {
@@ -13,9 +8,9 @@ namespace AlarmDisplay
     {
         public class AlarmCallback : IAlarmServiceCallback
         {
-            public void MessageArrived(string message)
+            public void MessageArrived(string message, int priority)
             {
-                PrettyConsole.WriteLine(message);
+                PrettyConsole.WriteLine(message, priority);
             }
         }
 
