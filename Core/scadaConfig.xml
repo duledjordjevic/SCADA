@@ -53,6 +53,9 @@
       <alarm priorityType="LOW" priority="3" threshold="20" />
     </alarms>
   </AI>
+  <AI name="Proba SD AI" address="S" syncTime="1" isSyncTurned="true" lowLimit="-10" highLimit="10" unit="liter">
+    <description>asdsad</description>
+  </AI>
   <AO name="gh" address="gh" value="0" lowLimit="30" highLimit="70" unit="gld">
     <description>gh</description>
   </AO>
@@ -70,6 +73,9 @@
   </DI>
   <DI name="Digital" address="digital" syncTime="1" isSyncTurned="true">
     <description>Digital input</description>
+  </DI>
+  <DI name="Proba SD" address="S" syncTime="1" isSyncTurned="true">
+    <description>adasd</description>
   </DI>
   <DO name="Termometar" address="1" value="123123">
     <description>Meri temperaturu</description>
