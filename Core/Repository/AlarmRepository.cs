@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Data;
 using System.Linq;
+using CommonLibrary.Model;
 
 namespace Core.Repository
 {

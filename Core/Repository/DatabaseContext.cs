@@ -1,6 +1,7 @@
 ﻿using Core.Model;
 using MySql.Data.EntityFramework;
 using System.Data.Entity;
+using CommonLibrary.Model;
 
 namespace Core.Repository
 {

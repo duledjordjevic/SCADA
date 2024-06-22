@@ -25,7 +25,6 @@
     <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="94b4b086-32ee-4e6f-8023-1ab217899f3f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
     <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="458b9722-ed3a-4f43-a1f6-d7c25764b902" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d4cc527a-69b6-4b00-bd0a-6d71e1241bee" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
-    <MetadataFile FileName="Core.Model.xsd" MetadataType="Schema" ID="05ba111f-06f9-4bef-9367-e1c7f8171f35" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
     <MetadataFile FileName="CommonLibrary.Model.xsd" MetadataType="Schema" ID="79738835-79cf-45b3-9b2c-19c35c13fd68" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
     <MetadataFile FileName="CommonLibrary.Model.Enum.xsd" MetadataType="Schema" ID="0d181175-a6eb-4a09-8556-eccc67f47d91" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Core.Service/ReportService/mex" />
   </Metadata>

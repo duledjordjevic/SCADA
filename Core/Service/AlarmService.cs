@@ -3,6 +3,7 @@ using Core.Service.Interface;
 using Core.Util;
 using System;
 using System.ServiceModel;
+using CommonLibrary.Model;
 
 namespace Core.Service
 {

@@ -136,8 +136,6 @@
       <DependentUpon>202406201932358_InitialCreate3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\ActivatedAlarm.cs" />
-    <Compile Include="Model\TagEntity.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AlarmLogger.cs" />

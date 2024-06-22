@@ -64,15 +64,6 @@
     <None Include="Connected Services\ReportServiceReference\CommonLibrary.Model.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ReportServiceReference\Core.Model.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ReportServiceReference\ReportManager.ReportServiceReference.ActivatedAlarm.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\ReportServiceReference\ReportManager.ReportServiceReference.TagEntity.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\ReportServiceReference\service.wsdl" />
     <None Include="Connected Services\ReportServiceReference\service.xsd">
       <SubType>Designer</SubType>
@@ -80,6 +71,8 @@
     <None Include="Connected Services\ReportServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\CommonLibrary.Model.ActivatedAlarm.datasource" />
+    <None Include="Properties\DataSources\CommonLibrary.Model.TagEntity.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLibrary\CommonLibrary.csproj">

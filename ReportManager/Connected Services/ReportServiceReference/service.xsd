@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/Core.Model" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" />
   <xs:element name="GetAlarmsByPeriod">
     <xs:complexType>
       <xs:sequence>
@@ -12,7 +12,7 @@
   <xs:element name="GetAlarmsByPeriodResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetAlarmsByPeriodResult" nillable="true" type="q1:ArrayOfActivatedAlarm" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetAlarmsByPeriodResult" nillable="true" type="q1:ArrayOfActivatedAlarm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -26,7 +26,7 @@
   <xs:element name="GetAlarmsByPriorityResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetAlarmsByPriorityResult" nillable="true" type="q2:ArrayOfActivatedAlarm" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetAlarmsByPriorityResult" nillable="true" type="q2:ArrayOfActivatedAlarm" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -41,7 +41,7 @@
   <xs:element name="GetTagValuesByPeriodResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetTagValuesByPeriodResult" nillable="true" type="q3:ArrayOfTagEntity" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetTagValuesByPeriodResult" nillable="true" type="q3:ArrayOfTagEntity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -53,7 +53,7 @@
   <xs:element name="GetLastAITagValuesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetLastAITagValuesResult" nillable="true" type="q4:ArrayOfTagEntity" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetLastAITagValuesResult" nillable="true" type="q4:ArrayOfTagEntity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -65,7 +65,7 @@
   <xs:element name="GetLastDITagValuesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetLastDITagValuesResult" nillable="true" type="q5:ArrayOfTagEntity" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetLastDITagValuesResult" nillable="true" type="q5:ArrayOfTagEntity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -79,7 +79,7 @@
   <xs:element name="GetTagValuesByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Core.Model" minOccurs="0" name="GetTagValuesByNameResult" nillable="true" type="q6:ArrayOfTagEntity" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CommonLibrary.Model" minOccurs="0" name="GetTagValuesByNameResult" nillable="true" type="q6:ArrayOfTagEntity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
