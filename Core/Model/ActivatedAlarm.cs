@@ -1,4 +1,5 @@
 ﻿using CommonLibrary.Model;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,7 +36,7 @@ namespace Core.Model
 
         public override string ToString()
         {
-            return $"{Alarm.TagName}: {Value} - {Alarm.PriorityType} [{TriggeredOn}]";
+            return $"{$"{Alarm.TagName}:",-15} {Math.Round(Value, 3), -10} {Alarm.PriorityType, -4} [{TriggeredOn}]";
         }
     }
 }
