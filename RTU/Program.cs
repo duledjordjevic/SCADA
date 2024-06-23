@@ -1,4 +1,5 @@
-﻿using CommonLibrary.ConsoleTools;
+﻿using CommonLibrary;
+using CommonLibrary.ConsoleTools;
 using RTU.ServiceReference;
 using System;
 using System.ServiceModel;

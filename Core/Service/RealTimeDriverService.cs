@@ -1,5 +1,7 @@
-﻿using Core.Service.Interface;
+﻿using CommonLibrary;
+using Core.Service.Interface;
 using Core.Util;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -30,9 +32,18 @@ namespace Core.Service
                 return false;
             }
         }
-
-        public void SendData(string address, double data)
+        public void SendData(string address, string message, byte[] signature)
         {
+            SignatureProvider.ImportPublicKey();
+
+            bool isValidSignature = SignatureProvider.VerifySignedMessage(message, signature);
+
+            if (!isValidSignature)
+            {
+                SendMessage(address, "Invalid signature! Data transfer failed.");
+                return;
+            }
+
             if (!RTUs.ContainsKey(address))
             {
                 SendMessage(address, $"Data transfer failed!");
@@ -41,9 +52,9 @@ namespace Core.Service
             {
                 lock (RTUs)
                 {
-                    RTUs[address] = data;
+                    RTUs[address] = Double.Parse(message);
                 }
-                SendMessage(address, $"Recieved data: {data}");
+                SendMessage(address, $"Received data: {message}");
             }
         }
 

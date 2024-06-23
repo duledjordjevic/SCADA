@@ -9,6 +9,6 @@ namespace Core.Service
         bool RegisterRTU(string address);
 
         [OperationContract]
-        void SendData(string address, double data);
+        void SendData(string address, string data, byte[] signature);
     }
 }

@@ -22,10 +22,10 @@ namespace RTU.ServiceReference {
         System.Threading.Tasks.Task<bool> RegisterRTUAsync(string address);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriverService/SendData", ReplyAction="http://tempuri.org/IRealTimeDriverService/SendDataResponse")]
-        void SendData(string address, double data);
+        void SendData(string address, string data, byte[] signature);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriverService/SendData", ReplyAction="http://tempuri.org/IRealTimeDriverService/SendDataResponse")]
-        System.Threading.Tasks.Task SendDataAsync(string address, double data);
+        System.Threading.Tasks.Task SendDataAsync(string address, string data, byte[] signature);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -71,12 +71,12 @@ namespace RTU.ServiceReference {
             return base.Channel.RegisterRTUAsync(address);
         }
         
-        public void SendData(string address, double data) {
-            base.Channel.SendData(address, data);
+        public void SendData(string address, string data, byte[] signature) {
+            base.Channel.SendData(address, data, signature);
         }
         
-        public System.Threading.Tasks.Task SendDataAsync(string address, double data) {
-            return base.Channel.SendDataAsync(address, data);
+        public System.Threading.Tasks.Task SendDataAsync(string address, string data, byte[] signature) {
+            return base.Channel.SendDataAsync(address, data, signature);
         }
     }
 }
