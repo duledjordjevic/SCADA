@@ -1,4 +1,5 @@
-﻿using CommonLibrary.ConsoleTools;
+﻿using CommonLibrary;
+using CommonLibrary.ConsoleTools;
 using RTU.ServiceReference;
 using System;
 using System.Threading;
@@ -41,7 +42,14 @@ namespace RTU
             {
                 var value = random.NextDouble() * (device.Max - device.Min) + device.Min;
 
-                RTDClient.SendData(device.Address, value);
+                string message = $"{value}";
+
+                SignatureProvider.CreateAsmKeys();
+                var signature = SignatureProvider.SignMessage(message);
+                SignatureProvider.ExportPublicKey();
+
+                RTDClient.SendData(device.Address, message, signature);
+
                 Thread.Sleep(device.Rate * 1000);
             }
         }
